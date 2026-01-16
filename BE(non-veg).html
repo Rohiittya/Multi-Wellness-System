@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <style>
+    .card-body {
+      flex-grow: 1;
+    }
+    .card {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .card img {
+      object-fit: cover;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+    }
+    .card-title {
+      color: #4CAF50;
+      font-weight: bold;
+    }
+    .card-body {
+      background-color: #f9f9f9;
+    }
+    .card h5 {
+      margin-top: 20px;
+    }
+    .navbar {
+      background-color: #6a1b9a; /* Purple background */
+    }
+    .navbar-brand {
+      color: white;
+      font-weight: bold;
+    }
+    .nav-link {
+      color: white;
+    }
+    .dropdown-item:hover {
+      background-color: #8f66a9;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg">
+    <div class="container">
+        <img src="data:image/jpeg;base64,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" alt="Logo" class="rounded-circle" width="50" height="50">
+        <a class="navbar-brand" href="">MWS & RD</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="home2.html">Home</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="servicesDropdown" role="button" data-bs-toggle="dropdown">
+                        Services
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="aerobics.html">Aerobics</a></li>
+                        <li><a class="dropdown-item" href="yoga.html">Yoga</a></li>
+                        <li><a class="dropdown-item" href="meditation.html">Meditation</a></li>
+                        <li><a class="dropdown-item" href="workout.html"></a></li>
+                        <li><a class="dropdown-item" href="dietplan.html">Diet Plan</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="moreDropdown" role="button" data-bs-toggle="dropdown">
+                        More
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="about.html">About</a></li>
+                        <li><a class="dropdown-item" href="contact.html">Contact us</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <form action="pp.html">
+                        <button style="background-color: rgb(132, 73, 178);" class="btn btn-primary nav-link">Get Personalized Plan</button>
+                    </form>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+  
+  <title> Non-veg Boost Energy Recipes</title>
+</head>
+<body>
+  <div class="container">
+    <h1 class="text-center mb-5" style="color: #6a1b9a;">Boost Energy Recipes</h1>
+    <div class="row">
+      <!-- Chicken and Quinoa Salad -->
+      <div class="col-lg-4 col-md-6 mb-4 d-flex">
+        <div class="card h-100">
+          <img class="card-img-top" src="https://tse1.mm.bing.net/th?id=OIP.Uk7bsGdk-g7Eb3wIizo54wHaE7&pid=Api&P=0&h=220" alt="Chicken and Quinoa Salad">
+          <div class="card-body">
+            <h4 class="card-title">Chicken and Quinoa Salad</h4>
+            <h5>Ingredients:</h5>
+            <ul>
+              <li>1 cup quinoa</li>
+              <li>2 cups water or chicken broth</li>
+              <li>1 cup cherry tomatoes, halved</li>
+              <li>1 cup cooked, shredded chicken breast</li>
+              <li>1 red bell pepper, diced</li>
+              <li>1/4 cup red onion, thinly sliced</li>
+              <li>1/4 cup feta cheese, crumbled</li>
+              <li>2 tbsp olive oil</li>
+              <li>1 tbsp lime juice</li>
+              <li>Salt and pepper to taste</li>
+            </ul>
+            <h5>Procedure:</h5>
+            <ol>
+              <li>Cook quinoa according to package instructions using water or chicken broth.</li>
+              <li>In a large bowl, combine cooked quinoa, cherry tomatoes, shredded chicken, red bell pepper, and red onion.</li>
+              <li>Top with crumbled feta cheese.</li>
+              <li>Drizzle with olive oil and lime juice. Toss gently to combine.</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Salmon and Sweet Potato Bowl -->
+      <div class="col-lg-4 col-md-6 mb-4 d-flex">
+        <div class="card h-100">
+          <img class="card-img-top" src="https://tse2.mm.bing.net/th?id=OIP.LVe6r7_h8Orwb8x5Wktk7AHaD7&pid=Api&P=0&h=220" alt="Salmon and Sweet Potato Bowl">
+          <div class="card-body">
+            <h4 class="card-title">Salmon and Sweet Potato Bowl</h4>
+            <h5>Ingredients:</h5>
+            <ul>
+              <li>2 cups mixed greens</li>
+              <li>1 cup roasted sweet potatoes, cubed</li>
+              <li>1 cup cooked, flaked salmon</li>
+              <li>1/4 cup red onion, thinly sliced</li>
+              <li>2 tbsp olive oil</li>
+              <li>1 tbsp balsamic vinegar</li>
+              <li>Salt and pepper to taste</li>
+            </ul>
+            <h5>Procedure:</h5>
+            <ol>
+              <li>In a large bowl, combine mixed greens, roasted sweet potatoes, flaked salmon, and red onion.</li>
+              <li>Drizzle with olive oil and balsamic vinegar. Toss gently to combine.</li>
+              <li>Season with salt and pepper to taste.</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Chicken Avocado Wrap -->
+      <div class="col-lg-4 col-md-6 mb-4 d-flex">
+        <div class="card h-100">
+          <img class="card-img-top" src="https://tse2.mm.bing.net/th?id=OIP.KR3PPYZ-8JiBb1yojPFGEgHaE8&pid=Api&P=0&h=220" alt="Chicken Avocado Wrap">
+          <div class="card-body">
+            <h4 class="card-title">Chicken Avocado Wrap</h4>
+            <h5>Ingredients:</h5>
+            <ul>
+              <li>1 whole-grain wrap or tortilla</li>
+              <li>1/4 cup hummus</li>
+              <li>1/2 cup spinach leaves</li>
+              <li>1/4 cup shredded carrots</li>
+              <li>1/4 cup cucumber, sliced</li>
+              <li>1/4 cup cooked, sliced chicken breast</li>
+              <li>1/4 avocado, sliced</li>
+              <li>Salt and pepper to taste</li>
+            </ul>
+            <h5>Procedure:</h5>
+            <ol>
+              <li>Spread hummus evenly over the wrap or tortilla.</li>
+              <li>Layer spinach leaves, shredded carrots, cucumber slices, chicken breast, and avocado slices on top of the hummus.</li>
+              <li>Season with salt and pepper to taste.</li>
+              <li>Roll up the wrap tightly and slice it in half.</li>
+              <li>Serve immediately or wrap in foil for later.</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Shrimp and Veggie Stir-fry -->
+      <div class="col-lg-4 col-md-6 mb-4 d-flex">
+        <div class="card h-100">
+          <img class="card-img-top" src="https://tse2.mm.bing.net/th?id=OIP.4zlFuTv4ObRM9fyDtwoETAHaE8&pid=Api&P=0&h=220" alt="Shrimp and Veggie Stir-fry">
+          <div class="card-body">
+            <h4 class="card-title">Shrimp and Veggie Stir-fry</h4>
+            <h5>Ingredients:</h5>
+            <ul>
+              <li>2 cups broccoli florets</li>
+              <li>1 bell pepper, sliced</li>
+              <li>1 carrot, julienned</li>
+              <li>1 cup snow peas</li>
+              <li>1 cup cooked, peeled shrimp</li>
+              <li>3 tbsp soy sauce</li>
+              <li>2 tbsp hoisin sauce</li>
+              <li>1/2 tsp ginger, minced</li>
+              <li>2 garlic cloves, minced</li>
+              <li>1 tbsp sesame oil</li>
+              <li>1 tbsp sesame seeds for garnish</li>
+            </ul>
+            <h5>Procedure:</h5>
+            <ol>
+              <li>Heat sesame oil in a large skillet or wok over medium-high heat.</li>
+              <li>Add minced ginger and garlic, and sauté for 1 minute.</li>
+              <li>Add broccoli, bell pepper, carrot, snow peas, and shrimp. Stir-fry for 5-7 minutes or until vegetables are tender-crisp and shrimp is heated through.</li>
+              <li>In a small bowl, whisk together soy sauce and hoisin sauce.</li>
+              <li>Pour the sauce over the shrimp and vegetables and toss to coat.</li>
+              <li>Cook for another 2-3 minutes.</li>
+              <li>Garnish with sesame seeds before serving.</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Turkey and Spinach Salad -->
+      <div class="col-lg-4 col-md-6 mb-4 d-flex">
+        <div class="card h-100">
+          <img class="card-img-top" src="https://tse3.mm.bing.net/th?id=OIP.1lMeU0tModRt3ULhGMu3bAHaE7&pid=Api&P=0&h=220" alt="Turkey and Spinach Salad">
+          <div class="card-body">
+            <h4 class="card-title">Turkey and Spinach Salad</h4>
+            <h5>Ingredients:</h5>
+            <ul>
+              <li>2 cups spinach leaves</li>
+              <li>1 cup cooked, sliced turkey breast</li>
+              <li>1 cup cherry tomatoes, halved</li>
+              <li>1/2 cup cucumber, diced</li>
+              <li>1/4 cup red onion, thinly sliced</li>
+              <li>2 tbsp olive oil</li>
+              <li>1 tbsp red wine vinegar</li>
+              <li>Salt and pepper to taste</li>
+            </ul>
+            <h5>Procedure:</h5>
+            <ol>
+                <li>In a large bowl, combine spinach leaves, sliced turkey breast, cherry tomatoes, cucumber, and red onion.</li>
+                <li>Drizzle with olive oil and red wine vinegar. Toss gently to combine.</li>
+                <li>Season with salt and pepper to taste.</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+  
+        <!-- Chicken and Veggie Stir-fry -->
+        <div class="col-lg-4 col-md-6 mb-4 d-flex">
+          <div class="card h-100">
+            <img class="card-img-top" src="https://tse4.mm.bing.net/th?id=OIP.7NSXxx84-J7zDPZSSFqqbAHaE8&pid=Api&P=0&h=220" alt="Chicken and Veggie Stir-fry">
+            <div class="card-body">
+              <h4 class="card-title">Chicken and Veggie Stir-fry</h4>
+              <h5>Ingredients:</h5>
+              <ul>
+                <li>2 cups broccoli florets</li>
+                <li>1 bell pepper, sliced</li>
+                <li>1 carrot, julienned</li>
+                <li>1 cup snow peas</li>
+                <li>1 cup cooked, sliced chicken breast</li>
+                <li>3 tbsp soy sauce</li>
+                <li>2 tbsp hoisin sauce</li>
+                <li>1/2 tsp ginger, minced</li>
+                <li>2 garlic cloves, minced</li>
+                <li>1 tbsp sesame oil</li>
+                <li>1 tbsp sesame seeds for garnish</li>
+              </ul>
+              <h5>Procedure:</h5>
+              <ol>
+                <li>Heat sesame oil in a large skillet or wok over medium-high heat.</li>
+                <li>Add minced ginger and garlic, and sauté for 1 minute.</li>
+                <li>Add broccoli, bell pepper, carrot, snow peas, and sliced chicken. Stir-fry for 5-7 minutes or until vegetables are tender-crisp and chicken is heated through.</li>
+                <li>In a small bowl, whisk together soy sauce and hoisin sauce.</li>
+                <li>Pour the sauce over the chicken and vegetables and toss to coat.</li>
+                <li>Cook for another 2-3 minutes.</li>
+                <li>Garnish with sesame seeds before serving.</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+  
+        <!-- Beef and Broccoli Stir-fry -->
+        <div class="col-lg-4 col-md-6 mb-4 d-flex">
+          <div class="card h-100">
+            <img class="card-img-top" src="https://vegetablerecipes.com/wp-content/uploads/2023/02/Ground-Beef-Broccoli-Stir-Fry-VR-10-1-of-1.jpg" alt="Beef and Broccoli Stir-fry">
+            <div class="card-body">
+              <h4 class="card-title">Beef and Broccoli Stir-fry</h4>
+              <h5>Ingredients:</h5>
+              <ul>
+                <li>2 cups broccoli florets</li>
+                <li>1 bell pepper, sliced</li>
+                <li>1 carrot, julienned</li>
+                <li>1 cup snow peas</li>
+                <li>1 lb beef sirloin, thinly sliced</li>
+                <li>3 tbsp soy sauce</li>
+                <li>2 tbsp hoisin sauce</li>
+                <li>1/2 tsp ginger, minced</li>
+                <li>2 garlic cloves, minced</li>
+                <li>1 tbsp sesame oil</li>
+                <li>1 tbsp sesame seeds for garnish</li>
+              </ul>
+              <h5>Procedure:</h5>
+              <ol>
+                <li>Heat sesame oil in a large skillet or wok over medium-high heat.</li>
+                <li>Add minced ginger and garlic, and sauté for 1 minute.</li>
+                <li>Add sliced beef and cook for 2-3 minutes or until browned.</li>
+                <li>Add broccoli, bell pepper, carrot, and snow peas. Stir-fry for 5-7 minutes or until vegetables are tender-crisp and beef is cooked through.</li>
+                <li>In a small bowl, whisk together soy sauce and hoisin sauce.</li>
+                <li>Pour the sauce over the beef and vegetables and toss to coat.</li>
+                <li>Cook for another 2-3 minutes.</li>
+                <li>Garnish with sesame seeds before serving.</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </body>
+  </html>
+  

@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Muscle Gain Breakfast Recipes</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<style>
+    body {
+        background-color: #f8f9fa;
+    }
+    .recipe-card {
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+        background-color: #ffffff;
+        height: 100%;
+    }
+    .recipe-image {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+    }
+    .recipe-body {
+        padding: 20px;
+    }
+    .container {
+        margin-top: 50px;
+        margin-bottom: 50px;
+    }
+    .card-title {
+        color: #2b2b2b;
+    }
+    .card-text {
+        color: #5a5a5a;
+    }
+    .navbar-brand {
+        color: #ffffff !important;
+    }
+    .footer {
+        background-color: #007bff;
+        color: #ffffff;
+        padding: 10px 0;
+        text-align: center;
+        margin-top: 50px;
+    }
+    .card-content {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }
+    .recipe-body {
+        flex: 1;
+    }
+    @media (max-width: 768px) {
+        .recipe-image {
+            height: 150px;
+        }
+    }
+    @media (max-width: 576px) {
+        .recipe-card {
+            margin-bottom: 30px;
+        }
+    }
+    .navbar {
+      background-color: #6a1b9a; /* Purple background */
+    }
+    .navbar-brand {
+      color: white;
+      font-weight: bold;
+    }
+    .nav-link {
+      color: white;
+    }
+    .dropdown-item:hover {
+      background-color: #8f66a9;
+      color: white;
+    }
+</style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg">
+    <div class="container">
+        <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxISEhUQEBAPDw8PFRUVFRUVFhUQFRIVFRUXFhUVFRUYHSghGBolGxUVITIhJSkrLi4uFx8zODMuNygtLisBCgoKBQUFDgUFDisZExkrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrK//AABEIAOEA4QMBIgACEQEDEQH/xAAcAAEBAAIDAQEAAAAAAAAAAAAAAQIHBQYIBAP/xABAEAACAgEBBgQCBwUECwAAAAAAAQIDEQQFBhIhMUEHUWFxEyIUIzJCUoGRM2JygqEkNJKxFUNTc6KzwdLh8PH/xAAUAQEAAAAAAAAAAAAAAAAAAAAA/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8A3g2RIuCgAAABMlAmCgAACMCNlSCRQAAAGLMgBEigACNhkwAMkEgAAAEZEjIAAAAAAAAADFsNhIAkZAAADFsDIERQAAAZMQVICgAACNkTAyAAAAjYBsJkSMgAAAAmSgAAAIygDFIyAAAGLANlSCRQAAAHDby7x0aGr4uok1nKhCPOdj8or/Nvku5zLPNe+m1bNTrLrLW/ksnXCPauEJOMYpdumX6tgctvF4ka3Utqqb0dPaNTxNr963q37YRyu5vifdVONWvk76JPHxWvrKvWWPtx8+/v0NcgD1bCaaUotOLWU1zTT6NMrZ530G/m0KYV01angqpioRj8OuS4Y9E3KLfTl17Hcd3vFrmoa+pYfL41SfL1nXzePWL/ACA2sjJI/DQ6uu6EbaZxtrmsxlFqSf5o/cAAAI2RDBkAAAAxbDYSAJGQAAAARFAAAEyBSYKAAAYBkTIVICnm/f8A0Xwdo6qGMJ2uxe1qVnL0zNr8j0gaX8b9Dw6qm9LldU4P3qln9cWL9ANcAYAGUZGIAHYNz97L9n28Vbc6JP6ylv5Zrzj+GeO/65PQ2ztdC+qF9T4q7YqUX6NZ5rs/Q8sm+fCHj/0bDjzw/Et+Hn8HH/3cYHdsgxSMgAAAEZQBikZAAADFsDIGH6gDMAxbANlSCRQAAANmIZUgCRQABrXxwp4qNM1zsd/BFd3xwlyS7tuMTZLZ0ffvfWnR5iqJ262KaqlOqUa4OS+0rZJKS9IN5xh47BpHV0SqnOqXKyuUoS9JRfC/6pnznJW7I1DpnrLYThU5JcdicHdZN5xBPnN/ak2uXJnGMCg+raWilTPglzUoxnCS6WVzWYTj6Nfo8rqj5orICEG3hLLeFhc22+iS7no7cPZk9PoKKbE42Ri3JPrFznKfC/VcWDQ+62thTrdNZPDhG+vPpmSjxJd8ZT/I9KXWxhGU5yUYQTlKT5KMUstt+WAP0BrTeDfqSirHdPQ0Wriprrrjdrb4P7NzVv1eng+qUk5P06HEbL38zNKvaGsrk8Y+nVae3TyflKenUZ15/FzSA3EYtnE7v7b+kxnGdbo1NDUbqm+LhbWYzhJcp1yXOMv8mmjlkgKigAADFsA2VIJFAAADGRUigAAAAMcmQAAACMoAwk8c20kubfRL3OlbX8Udn0ycIO3VSjlZqinDP8cmk16xydQ8Vt85W2S0GnniipuN0ov9rNda8/hi+TXdp+XPW4GxN5N4NDtbHHbqNBqa01V8Z8WlbfaXDngb/HhY5dcYNf6miVcpVzXDODw1lP8ARrk15NcmfmVIDs27ttWrhDZupbhPia0l6XE6ZzfOma+9VJ/o3+nw7V3W1uns+FZprnLOIuuMrYWeXBKK558uT80jjdHqHTbC2POVM4TXq4SUkv6HpvY+1qdVWrtPZG2uXdPnF/hkusZLyYHA7g7ox0FPzZlqLlCVuWnGMo8WFDlyxxNH078w46K6H+z1Wp09Nn71crU5w9pKLj/MdiOL3m2W9Tp51Qkq7U42VTfNQuqkrKpP0UorPpkDz5r7JazXy+JNQlqNRwcUulcXZwRXtGOFj0OY8QNzq9nyqVd8rVdGTanwqUXBxy/l+6+L8sdy7x7t2X22XaWp/GbctTo+Xx9NbLnNxh1tplLLjKOevocZRuzrrXm2q2iuC+e7VcVFdcV3lOzGUvJZA734bauUnoptvicdVpJP8dVShdTn0g5SivJSNrHRPD7YyThdBTWk01UqdM5pwlfK2anqNU4vnGMpRjGCfPhj5NHewABMgUiRQAAAAAAAAAyYgqQBIoAAjYbIBUzr2/23voWisui8Wz+rq/3k84f8qUpfynYkaC8T953rNS6q5Z02lbhDHSc+k7PXmsL0We4HTf6/1AMq63JpRTk20kkstt8kklzbb5AYozk8ckZ6mp1ylXJYlF4kuuGuqfqj8QByux9o6nROOs085Ri5cMmucJOPP4Vq6c1zWezyuaeOKPt2VtSenk3FQsrsXDbVYuOq6HXhnHvh801zT6MD09p7VOEZrpOKkvZrJnk6Vud4g6XVKFMl9Evwoxrk8wljklXZ39nh+53RIDX3ivtejTvT/E0dOqnP4jzJyqsrjHhXyWw+aGXPt5HHeHeo0mvvmns/h+jxjNSu1N+vam5Yjwq7lHkpc0dQ8T9tLVa+fA81adfBi+zcW3Nr+ZyXtFHcPArTfJqrvxTrr/wRlJ/8xAbTAMWwDZUgkUAAGwAMWVAUAACNBMoESKAAI2UjQEMgAOp+Je8H0PRy4JYv1H1VeOqyvnmv4Y55+biee0jt3ift76XrZKLzTpc1V+Taf1kl7yWPaCOpAZVVuTUYpylJpRSWXJt4SS7ts2VqN3nsjZ8tXKHFtG7hrjJfNHRqxNNxfaeMri85JLl15Lwi3QUYraN8c2TX9ni/uQfL4vvJdPT3NkbT0FeoqnRbHiqti4yXo+6fZrqn2aA8sg5HeLY89HqLNNZzdb5S6ccHzhNe6/R5XY44AZRiSK8yykBJv9DaO5m9Wq1Oh1WjVsvpmnolOix85yguUot/jXJKX7y8uerTv3gzT/bLbX+zp00+N9vmlDCf5Rl+gHQI+nQ374SbOdOzoSksS1EpXfyyxGD/ADjGL/M0rujsWWs1FOmWUrGuNr7tcVmbz7LC9Wj01TVGEVCKUYwSjFLkkksJL8gKypFAAAAGYsMqQBIoAAAARIoAAmQ2QDIAADq3iPvD9C0c5QljUX5rq81KS+aa/hWX748ztJrTxh3av1Cr1VObIaeEozrX2oxb4nZFd+nNdeS6gacjE57cvYi1msq00v2eeOzs/hw5yivd4Xpn0OCcv/p+uz9bZRZC6mXBbVJSi/Jrz80+jXdNgep4RSSSSSSwkuSSXRJFOI3V27DXaaGphyclicevw7F9uP69H3TT7nLga78Y93vjadayC+t0nKeOsqW+ef4W+L0TkaUPVOqpjZCVc0pQsjKMl5xksNfozzhvZu3boL/g2ZlCWXVZ2tgu68pLKyu2fJoDhQAANgaG36HsKd1Kcrdp2ypsn0+FBccOH/DCePW01+bW3B2OtfsmWlnLhjDWJ578MfhWTS8m1Kaz6gch4NbvfCplrbI4s1Py15+7TF9f5pLPtGJshGFFMYRUIpRhBKMUuSiksJL0wj9AAAAAxTMgGAAAI2GQBxewHCAMiNhmOAKZAAAABGyJFaKBpnxI8P5UuWs0cOLTvMraornS+rlBd6/Nfd9vs62PV5rLfnwxjbxajZ6jXa+cqOUYWPu630hL06P07h0bw+3sez7/AJ8vS3YVsVz4fw2RXmu/mvZHoGm+M4xnXKM4TSlGSeVJPmmn3R5bv0s65yrthOuyDxKMk4yT9UztW5O/lugfw5p36RvLhn5q2+sqm+nnwvk/RtsDfqRpTeneKuWu1ej1XFbs+dqSa+aeltjCMZW0+0uLMe/PzafK7T8Yuco6bSfLhqM7J4ee0nXFPl6cRqqybk3KTcpSblJvrJt5bfq2wPr2xsyemtdU3GfJShOPOFtclmFkH3i1/wBV2PiPst17nRCmfzOiT+FLvGueXOv24lGS8uKfmfGBlBdzdngpDGhsl+PUza9lXVH/ADizSUpZPQPhVpfh7Moz1s47PynZJx/4eEDtoAAGBSpAEigACNlMcACpBIoAAAAfBrNoOFtdShxKzrL5vky8LpFrr5tH3gACNgGwiJGQAAAATJQOE3j3W0uujw6ivMl9myPy2Q9pd16PK9DS+/W5E9ncE/ixuotk4xeHGcWlnEl06Z5p9uiPQZ1TxL2BPWaKUKlxX0yVtcfxuKalFerjKWPXAHnsFlFptNNNNppppprqmn0foWMfMDFoFlI/XRWQjOLtjx1J/PHo3B8pcL7Sxlp+eAPwk+R6i2FpVVpqKo4xVVXFY6Phglk83bxbJlpbp0N8cUlKua6W1TWa5r3X9U12PSmyqnCiqEvtQrhF+6ikwPrI0UARIoAAEbIBkAAAAAAADgNsf3vTvijFcl9mMpS+bom3mKXdr8S6nPnA7Zf9r0v2vtTxh2JN8L68K4cpc+fk+a788BGyIYMgAAAGLYbCQBIyAAAGLA4Pb26Wi1j4tRp4uz/aRzXZ6ZlHGfzydO2l4PVS/u+rtr9LYxuXtmPC1/U2ckUDQW1/DPaFGZRrhqYLvTLMsfwSSf5LJ0+2uUZOE4yhOLxKMk4yi/JxfNM9WnB7z7rabXQ4b618RLELY4VkPaXdejygOhbs7DjtPS7Ptk1x7PudN379Nfz1w9f9Uvacja+To3hnsS7Qy1eku+aMbK7K5pYjZGcZR4l5P6tZXZr833pIAigACNhsxApUgkUAARsA2IkSMgAAA4Xa1la1FGXX8VZ+GnKxS+blL5Y8msL73kzmjgNtX/2nTQ554sv2copZ81leyfD6J8+AAAAkigDFIyAAAGLYGQCAAAADEyJgAkUAACNhMCsiRQAAAEbIkXBQAAAAmSgcLtnUzjfpoRc4wlN8TUoqMui4Wur6r9cd+XNHE7T0E530WRUeCp/M+KSljn93pjOOfXDa9+WAGLYbCQFRQAABi2AbKkEigAAAZEyFSAoAAEYbIBDJIqAAAjYDJTFIyAAAAYtlbIkBMAzAAMADFGQAAAARmMf/AH+oAGYAAEYAEiZAAAABiyoACgAAYsACooAAMADH/wAmQAAAAf/Z" alt="Logo" class="rounded-circle" width="50" height="50">
+        <a class="navbar-brand" href="">MWS & RD</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="home2.html">Home</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="servicesDropdown" role="button" data-bs-toggle="dropdown">
+                        Services
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="aerobics.html">Aerobics</a></li>
+                        <li><a class="dropdown-item" href="yoga.html">Yoga</a></li>
+                        <li><a class="dropdown-item" href="meditation.html">Meditation</a></li>
+                        <li><a class="dropdown-item" href="workout.html"></a></li>
+                        <li><a class="dropdown-item" href="dietplan.html">Diet Plan</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="moreDropdown" role="button" data-bs-toggle="dropdown">
+                        More
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="about.html">About</a></li>
+                        <li><a class="dropdown-item" href="contact.html">Contact us</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <form action="pp.html">
+                        <button style="background-color: rgb(132, 73, 178);" class="btn btn-primary nav-link">Get Personalized Plan</button>
+                    </form>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center mb-4 text-primary">Muscle Gain Breakfast Recipes</h1>
+        <div class="row">
+            <!-- Recipe 1 -->
+            <div class="col-md-4 mb-4">
+                <div class="card recipe-card">
+                    <img src="https://beeyawellness.com/cdn/shop/articles/Landscape_BlueberryProteinPancakes.jpg?v=1709568217" class="card-img-top recipe-image" alt="Protein Pancakes">
+                    <div class="card-body recipe-body">
+                        <h5 class="card-title">Protein Pancakes</h5>
+                        <p class="card-text">Fluffy protein pancakes to kickstart your day with a protein boost.</p>
+                        <ul class="list-unstyled card-text">
+                            <li>Ingredients:</li>
+                            <li>- 1 cup protein powder</li>
+                            <li>- 1 cup oats</li>
+                            <li>- 1 cup cottage cheese</li>
+                            <li>- 2 eggs</li>
+                            <li>- 1 tsp baking powder</li>
+                            <li>- 1/2 cup almond milk</li>
+                        </ul>
+                        <ul class="list-unstyled card-text">
+                            <li>Procedure:</li>
+                            <li>1. Blend all ingredients until smooth.</li>
+                            <li>2. Cook on a non-stick pan until golden brown.</li>
+                            <li>3. Serve with fresh berries and honey.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card recipe-card">
+                    <img src="https://hips.hearstapps.com/hmg-prod/images/190514-acai-bowl-128-1559077269.jpg?crop=1.00xw:0.750xh;0,0.168xh&resize=640:*" class="card-img-top recipe-image" alt="Smoothie Bowl">
+                    <div class="card-body recipe-body">
+                        <h5 class="card-title">Smoothie Bowl</h5>
+                        <p class="card-text">A thick smoothie bowl topped with nuts and fruits for extra protein and energy.</p>
+                        <ul class="list-unstyled card-text">
+                            <li>Ingredients:</li>
+                            <li>- 1 banana</li>
+                            <li>- 1/2 cup Greek yogurt</li>
+                            <li>- 1/2 cup almond milk</li>
+                            <li>- 1 tbsp protein powder</li>
+                            <li>- 1/4 cup mixed nuts</li>
+                            <li>- 1/4 cup sliced fruits</li>
+                        </ul>
+                        <ul class="list-unstyled card-text">
+                            <li>Procedure:</li>
+                            <li>1. Blend the banana, yogurt, almond milk, and protein powder.</li>
+                            <li>2. Pour into a bowl and top with mixed nuts and sliced fruits.</li>
+                            <li>3. Enjoy your protein-packed smoothie bowl!</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4"> <div class="card recipe-card"> 
+                <img src="https://media.istockphoto.com/id/535519365/photo/healthy-spinach-egg-white-omelette.jpg?s=612x612&w=0&k=20&c=hAfoc-XRHppSepHjexIOnfp7Fgvghrh0eVHTzideVzY=" class="card-img-top recipe-image" alt="Egg Whites and Veggies"> <div class="card-body recipe-body"> <h5 class="card-title">Egg Whites and Veggies</h5> <p class="card-text">A simple, protein-rich breakfast with egg whites and fresh vegetables.</p> <ul class="list-unstyled card-text"> <li>Ingredients:</li> <li>- 4 egg whites</li> <li>- 1/2 cup spinach</li> <li>- 1/4 cup bell peppers, diced</li> <li>- 1/4 cup onions, diced</li> <li>- Salt and pepper to taste</li> </ul> <ul class="list-unstyled card-text"> <li>Procedure:</li> <li>1. Sauté the vegetables in a non-stick pan.</li> <li>2. Add the egg whites and cook until done.</li> <li>3. Season with salt and pepper.</li> </ul> </div> </div> </div> <div class="col-md-4 mb-4"> <div class="card recipe-card"> <img src="https://img.freepik.com/premium-photo/greek-yogurt-parfait-with-fresh-berries-granola-glass_170984-20140.jpg" class="card-img-top recipe-image" alt="Greek Yogurt Parfait"> <div class="card-body recipe-body"> <h5 class="card-title">Greek Yogurt Parfait</h5> <p class="card-text">A layered Greek yogurt parfait with granola and fresh berries.</p> <ul class="list-unstyled card-text"> <li>Ingredients:</li> <li>- 1 cup Greek yogurt</li> <li>- 1/2 cup granola</li> <li>- 1/2 cup mixed berries</li> <li>- 1 tbsp honey</li> </ul> <ul class="list-unstyled card-text"> <li>Procedure:</li> <li>1. Layer the yogurt, granola, and berries in a glass.</li> <li>2. Drizzle with honey.</li> <li>3. Repeat the layers as desired.</li> </ul> </div> </div> </div>  <!-- Recipe 4: Avocado Toast --> <div class="col-md-4 mb-4"> <div class="card recipe-card"> <img src="https://hips.hearstapps.com/del.h-cdn.co/assets/16/01/2048x1024/landscape-1452289733-avocado-toast.jpg?resize=640:*" class="card-img-top recipe-image" alt="Avocado Toast"> <div class="card-body recipe-body"> <h5 class="card-title">Avocado Toast</h5> <p class="card-text">A classic avocado toast with a twist of lemon and chili flakes.</p> <ul class="list-unstyled card-text"> <li>Ingredients:</li> <li>- 1 ripe avocado</li> <li>- 2 slices whole grain bread</li> <li>- 1/2 lemon, juiced</li> <li>- Salt, pepper, and chili flakes to taste</li> </ul> <ul class="list-unstyled card-text"> <li>Procedure:</li> <li>1. Toast the bread to your liking.</li> <li>2. Mash the avocado with lemon juice, salt, and pepper.</li> <li>3. Spread the avocado mixture on the toasted bread.</li> <li>4. Sprinkle with chili flakes.</li> </ul> </div> </div> </div> <!-- Recipe 5: Quinoa Salad --> <div class="col-md-4 mb-4"> <div class="card recipe-card"> <img src="https://media.istockphoto.com/id/638197896/photo/healthy-organic-quinoa-tabouli-salad.jpg?s=612x612&w=0&k=20&c=gdkzYahN7rKnkXi8aGuS_Q0QaIOhixNu-UzGM5TZrAY=" class="card-img-top recipe-image" alt="Quinoa Salad"> <div class="card-body recipe-body"> <h5 class="card-title">Quinoa Salad</h5> <p class="card-text">A refreshing quinoa salad with mixed vegetables and a lemon vinaigrette.</p> <ul class="list-unstyled card-text"> <li>Ingredients:</li> <li>- 1 cup cooked quinoa</li> <li>- 1/2 cup cherry tomatoes, halved</li> <li>- 1/2 cucumber, diced</li> <li>- 1/4 cup red onion, diced</li> <li>- 1/4 cup fresh parsley, chopped</li> <li>- 2 tbsp olive oil</li> <li>- 1 tbsp lemon juice</li> <li>- Salt and pepper to taste</li> </ul> <ul class="list-unstyled card-text"> <li>Procedure:</li> <li>1. Mix the quinoa and vegetables in a bowl.</li> <li>2. Whisk the olive oil, lemon juice, salt, and pepper to make the dressing.</li> <li>3. Pour the dressing over the salad and toss well.</li> </ul> </div> </div> </div> <!-- Recipe 6: Chickpea Stir-Fry --> <div class="col-md-4 mb-4"> <div class="card recipe-card"> <img src="https://cdn.cleaneatingmag.com/wp-content/uploads/2015/09/kung-pao-chickpea-stir-fry-over-sesame-fried-millet-55-web.jpg?crop=16:9&width=1600" class="card-img-top recipe-image" alt="Chickpea Stir-Fry"> <div class="card-body recipe-body"> <h5 class="card-title">Chickpea Stir-Fry</h5> <p class="card-text">A quick and flavorful chickpea stir-fry with veggies and soy sauce.</p> <ul class="list-unstyled card-text"> <li>Ingredients:</li> <li>- 1 can chickpeas, drained and rinsed</li> <li>- 1 cup broccoli florets</li> <li>- 1 red bell pepper, sliced</li> <li>- 1 carrot, julienned</li> <li>- 2 tbsp soy sauce</li> <li>- 1 tbsp olive oil</li> <li>- 1 clove garlic, minced</li> <li>- Salt and pepper to taste</li> </ul> <ul class="list-unstyled card-text"> <li>Procedure:</li> <li>1. Heat the olive oil in a pan and sauté the garlic.</li> <li>2. Add the chickpeas and vegetables and stir-fry until tender.</li> <li>3. Add the soy sauce and season with salt and pepper.</li> <li>4. Cook for another 2-3 minutes, then serve.</li> </ul> </div> </div> </div> <!-- Recipe 7: Lentil Soup --> <div class="col-md-4 mb-4"> <div class="card recipe-card"> <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQREayF_jlEjAM5ifdmOT3DlxDEmc4SUaojg&s" class="card-img-top recipe-image" alt="Lentil Soup"> <div class="card-body recipe-body"> <h5 class="card-title">Lentil Soup</h5> <p class="card-text">A hearty lentil soup with vegetables and spices.</p> <ul class="list-unstyled card-text"> <li>Ingredients:</li> <li>- 1 cup lentils, rinsed</li> <li>- 1 onion, diced</li> <li>- 2 carrots, diced</li> <li>- 2 celery stalks, diced</li> <li>- 2 cloves garlic, minced</li> <li>- 1 can diced tomatoes</li> <li>- 4 cups vegetable broth</li> <li>- 1 tsp cumin</li> <li>- 1 tsp paprika</li> <li>- Salt and pepper to taste</li> </ul> <ul class="list-unstyled card-text"> <li>Procedure:</li> <li>1. Sauté the onion, carrots, celery, and garlic in a pot.</li> <li>2. Add the lentils, tomatoes, broth, and spices.</li> <li>3. Bring to a boil, then simmer for 30-40 minutes until lentils are tender.</li> <li>4. Season with salt and pepper before serving.</li> </ul> </div> </div> </div> <!-- Recipe 8: Grilled Chicken Salad -->
+<div class="col-md-4 mb-4">
+    <div class="card recipe-card">
+        <img src="https://media.istockphoto.com/id/1173344012/photo/caesar-salad-vegetable-salad-with-roast-chicken-meat-on-black-stone.jpg?s=612x612&w=0&k=20&c=w83rKLgwvG2a69A2qludvhIBd9WI13fQOgFxzHerplU=" class="card-img-top recipe-image" alt="Grilled Chicken Salad">
+        <div class="card-body recipe-body">
+            <h5 class="card-title">Grilled Chicken Salad</h5>
+            <p class="card-text">A healthy grilled chicken salad with mixed greens and a balsamic vinaigrette.</p>
+            <ul class="list-unstyled card-text">
+                <li>Ingredients:</li>
+                <li>- 1 grilled chicken breast, sliced</li>
+                <li>- 2 cups mixed greens</li>
+                <li>- 1/2 cup cherry tomatoes, halved</li>
+                <li>- 1/4 cucumber, sliced</li>
+                <li>- 1/4 red onion, thinly sliced</li>
+                <li>- 2 tbsp balsamic vinegar</li>
+                <li>- 2 tbsp olive oil</li>
+                <li>- Salt and pepper to taste</li>
+            </ul>
+            <ul class="list-unstyled card-text">
+                <li>Procedure:</li>
+                <li>1. Arrange the mixed greens on a plate.</li>
+                <li>2. Top with cherry tomatoes, cucumber, red onion, and sliced grilled chicken.</li>
+                <li>3. Whisk the balsamic vinegar, olive oil, salt, and pepper to make the dressing.</li>
+                <li>4. Drizzle the dressing over the salad before serving.</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- Recipe 9: Chocolate Banana Smoothie -->
+<div class="col-md-4 mb-4">
+    <div class="card recipe-card">
+        <img src="https://sthelensfarm.co.uk/wp-content/uploads/2024/02/all-products-Landscape-Poster-10-e1708707459920-1024x577.jpg" class="card-img-top recipe-image" alt="Chocolate Banana Smoothie">
+        <div class="card-body recipe-body">
+            <h5 class="card-title">Chocolate Banana Smoothie</h5>
+            <p class="card-text">A delicious chocolate banana smoothie perfect for a quick breakfast or snack.</p>
+            <ul class="list-unstyled card-text">
+                <li>Ingredients:</li>
+                <li>- 1 ripe banana</li>
+                <li>- 1 cup milk (or almond milk)</li>
+                <li>- 1 tbsp cocoa powder</li>
+                <li>- 1 tbsp honey (optional)</li>
+                <li>- A handful of ice cubes</li>
+            </ul>
+            <ul class="list-unstyled card-text">
+                <li>Procedure:</li>
+                <li>1. Combine all ingredients in a blender.</li>
+                <li>2. Blend until smooth.</li>
+                <li>3. Pour into a glass and enjoy.</li>
+            </ul>
+        </div>
+    </div>
+</div>
+ </div>
+    </div>
+    <div class="footer">
+        <p>© 2025 Muscle Gain Breakfast Recipes. All Rights Reserved.</p>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

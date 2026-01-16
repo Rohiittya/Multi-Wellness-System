@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Muscle-Gain Non-Veg Recipes</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f4f3f8;
+    }
+    .recipe-card {
+      background-color: white;
+      border-radius: 15px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+      margin-bottom: 30px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+    .recipe-title {
+      font-weight: bold;
+      font-size: 24px;
+      color: #6a1b9a;
+    }
+    .recipe-image {
+      width: 100%;
+      height: auto;
+      border-radius: 15px;
+      margin-bottom: 15px;
+    }
+    .ingredients, .procedure {
+      margin-top: 20px;
+    }
+    .ingredients h4, .procedure h4 {
+      color: #6a1b9a;
+    }
+    .ingredients ul, .procedure ol {
+      padding-left: 20px;
+    }
+    .ingredients ul li, .procedure ol li {
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container mt-5">
+    <h1 class="text-center mb-5" style="color: #6a1b9a;">Muscle-Gain Non-Veg Recipes</h1>
+
+    <div class="row">
+      <!-- Recipe 1 -->
+      <div class="col-lg-4 col-md-6 d-flex">
+        <div class="recipe-card">
+          <h2 class="recipe-title">1. Grilled Chicken Breast</h2>
+          <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxMTEhUTExMWFhUXGB0bGBgYGRkYGxgbHh0gHR4gHhgfICggGx0lHRoYIjEiJSkrLi4uGx8zODMtNygtLisBCgoKDg0OGxAQGy4lICY1LS0vLS8tKy0tNSstLy0tLS0vLy0tLS0vLS8tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLf/AABEIAKgBLAMBIgACEQEDEQH/xAAcAAACAgMBAQAAAAAAAAAAAAAFBgQHAAIDAQj/xABEEAABAwIEBAQDBQcCBAUFAAABAgMRACEEBRIxBkFRYRMicYEykaEHQrHB8BQjUmJy0eEz8RVDgqIkU5KywggWJURj/8QAGwEAAgMBAQEAAAAAAAAAAAAAAwQBAgUABgf/xAAvEQABBAEDAgQFBAMBAAAAAAABAAIDESEEEjEiQRNRYZEFcYGh8BQyseEjQsHR/9oADAMBAAIRAxEAPwBKQ0pM+GsjsakM5stP+om3X/NcQqsLsnrb50GXRRSdqRYtdLH6otrZeESD62I96iOZSU/AZHQ/kedDXmBukwe1vpXXD5m61b4h+uVJfp9Tp8xGx5Jzx9PqMSCiu6VlJ0kEE+1dUvmYrvhsyadsQJ6Gsdy6Lok22m/t1pmH4i0nbKNp+yXm0DgN0ZsfdeBVaKX/AJriV9d6jF28/StK1nKYXa4uv1Ddd71GexMVFqaUxeIrkwlx1YbaQpxatkpBJ+nLvtTJwZ9n+Jx8OLljDH75HmWP5Enl/MbdJp+zHMcBkzJQw2C4bHmpR/mXv7fIVUkd1YNs0EuZB9mBgO5g8GkC5bSRP/U5sn0E+tN+B4my7Bp8PCM+URKkJACrx8ajqcPe/rVauZ/ica7qWfETNkE6Gk9JG69xvzE1pnukpIK1K0fFACUg7gAAcoNwOtZmo1p3bI1q6bQAjdIrnwfFgWJ8OLc1c+m29TWeJsOTpK9J/m/vyF9zVcZZkzi0pUkgDSnSeV+RMzPbvQ7iNDuGC0pIKtO8Ax2SCJuAf0KSh1sxdRKO/Rw/6q70qB2NbVQfBee4txev9oUgKVpi0SntF7E72p9y7iTE4d3Ti1B1pR/1AkJKLWlI3k3t7VoDVs3bDgpR2ieBuGUa4g4acxDgUMStKObZEpEc0gEX33miWDwowzOhJJibncmpOGxzbidTa0qHVJn59KF57mIRCQNSlGAkETHM+go4bGy5CkNnVgZQHKs1CsQtvEISsklTaiJgDdN9uvzpjOIT2qv87bOrUkwpJlKuhozlOaeM2Fc9lD+FXMf2rH1j5GSW1Fa0UmnEKMSg/wDSrb2O4+tIvFeIbcSUOpuORspJ5EEbeoptaekRzH1pQ49wmtrWPiReRHw8xPTn7U03WkNzkFD2ZSgjGEQhBUUjcqUVH5k/SuzbTilAJXA7Jgqn/ahmGhVjsZkdYB/GmDh3CS9o1mEEWEb+UGP5R5vnSU8rpsJrTTiJ9nhHcs4TVZTilC4IAJ+o2jtTI2FXSj92lNwQJK43BtJ9u1RV5kgAtlYkLISoRtMCPQbn1rfB5lCSv4wTCO4HqLn6Xpa2gjP1Wk4vkF+yJ4bMULQXAQmCd7c4vPMxt3FcWs+T45T90J2GxJN/cR1pRVl7j5cUR5jeT90mTYdBe3bvU7IcrebeW4SS3oKfMLApA8085vYch8mo5Ty05Qv07WtO9GOLce8pkpwyFkkA6kpJMHkBuDz9jUnIca+llC30FMjzJ5p7wbid9NTctxSdKADIVaeh5ex/tUt5aZ0kjURMc46xWtARIfELvSu1rLkjLHUhPE3DjWMb1JIDkeRwc+gV1H4fMGs8VhlIUULSUrSYUDyP577jerSQ6WF//wA1G4/hPUdutQuNMiDyPFbH7xCeX30cx3I3HuKdY6jRQXt7hVopOwr1vpz/AD51stFbRHrR0Jait4rwG9YquXJF2rzXXpNebXoKItHXPn+FeBdqjOgjY1zLvWutTSIeClW4M9efzqVhswcatOtHTmKGtPnrXq3aBNp45RTgjRTyRG2lM37rEplJ0r6/360AxqVNqKViCPr3B5ioYxZQrUkwRR1vFN4tvQ4dKh8KwLpPfseY50i0yaQ0cs/hOubHqhYw/wDlAEqUtaW20la1GEpSCVKPQDnVy8AfZQlrTiMeA47ulndDfTV/GrtsO+9CODfBy1BU20HcQoCX19DEhCfup35ybT0FwZXmAdYQ8RpChME7XjenGzteaaVnYBLe4QHjniEYVkhNlEQP1yr54zzGLfWSSSeXQXps+0PPC/iVBJsDpTelnEMoQYlR+G+46q+XUxS0s1mlo6aGhuKON5qhtpplKCkmC4T96RMgjcbTHSDU9tXiq8A+QLEpOkE2vE8+t9+1CXcOtQB06dIlNzeTv0Fjf2pky3AL/ZvEdT5ROpQN7RBHPpesx2y9x5RpzqGuDY+Cn/hnL0llBUSTA38u3MDce9RON8i8WFkjSiADNwlW5M94FTeGwV4ZtabDQCEzfaIJi4/OuuaY5LrSkGJ1AIE3J5nsR9OtUY4NbxR7K1v8Xz7FVvw9lRVrSE6UoWASekeYz7D/AHrOIMa44pxph2EoSEg7QsA6r7xEDtTbkmKS4C0gzoUQpWnY8x9Dz60K4h4XDLisSgkocWA4m0iYEj/qCT/1GiwSAyAvCPM7BaMFV3wdicYlCxhnVIUhxJUBYAEFMqV/CTpHPYGn/AccrJ04ln95p/1EC6gDBIHMeh57UI4NyxKnHkpnUVAlOkEQBESehm4771rixiQ4GlthKiYR5TEbpuDGwFuxpkas+IQ2q9fNCOmYW0/lF3s2bekoVPUGQoT1SbioeW44sP6t23LLHTv+u1a49iHQknSspKjCSmAB2Hmi5AmOfKszD/w4SpY1IWfKQCbd7R+u9Vkp7qdhLyaUtFsyE+l60g7bRzHb1pczLNStZStMIIKSmJ1TzncWr3hTOmHSWS8Ef1WgXsflI9qg8X5lhW1JLThXJIKogD050o+NwND2/wC/JIPBGFyw2QJDqPD1FC9UTeCkSBPy+tMIyXwEhYHWZtMmSJiYJA9Y6UjYHjMMvseGdZQolQMaSgggiY+K4Mi1qcVZ+vFpACvDKlQEAgzB1CZHSxiiFzY225Wj0sklEcIKjLncTiWXSnw25vP3VAm3cmdx3qw8NgkIKEkyblI/H8qFZU6UAJcEpTsQLSB93p/g0WZxSVJSraNp3j8f9qV8RvJC1pNwAaOAomZKUHmy3zPmnaOu+0xXV7HDSUKUnmBBSJJmLyYN7VzzJxKklSTBSbGbx2HPbbtWiVtpCfKIJgE2MxyHWiRAE3dAqNttFjIW7yyVJUjUQ2oJCSmJMHtKo6gxc0RYz7DrdDRUEvXAChBMbgK29pm21QM7xKUsueZKFJAUNRjVHmB1A84P1pP4aSHiypRKVATvN06gAZvIv6zTrdR4R6RjuqDTiZluxSsvFNAgg1xyZ8iWVG6boPVPT2rql0lCVEQSLjvQrMXtBDqfiQZ9RzHyrXLgWhwWVto7SlnjDKgy7qSIbckj+U/eT87+/alpyeW0VZ/EhZfZLYWjWUeK2JEmOg7gx71Wbh2o7HWEu4UVkj8K2RXBoGdtqkyByNXVUhhHM7fjXFxU10eUTXIpJvQkRcnPrFRVnlUtSb9heoL29QVYL0u1HXiK0eXFaYLCuPOIaaSVuLVpSkbk/rnyoZcr0pWXYN3EupZYSVrWbAcupJ5Adaurhz7N0MMlCgFurErWRz6DoP8AemD7PeAkZeyJhT6wPEX/APEfyj6708NNRXECsqLN4VJ4vDHDOqZUoLSkgSLlBIkJV0tF+fsam4PFuESw6QRySbXn7u3amXjjhFS3DimEBRUIeTeVpA2CQLnvMyExSNhsM6y8FqQWkWPnEEiJ+EX2ifesmSMxvwMLtQ8SDcf3D7+qTXk/vXkuX0k9ut+u9aLhJTciYiNt4IPqOdN/FGXsvS40YciYiQRz7kGkXFoUhSULSQFXv1HTt3FS3qJWlpNS17A08hPGJdIZbCkGwgm1xMzM7WApmU43+yBGoRomAQZAkEwOU2pdU02sYcNmAsI1hR1CdiIJ/l270xvuMnxNYSLltEReIiee16ynNC1AeED4L4lWHG0nUpI1ItbygXAuLzG3L0u38ZupCUFChqVpASmIhRmfkCKD8M5XhygoS1Di1GVSTBnyxy2ojnmVErCitPlUlI1DYzIvyBNz2j0pne0kbRjCE5o32ecoDwrniWm8T4YlzklXwSZg9BaT3tPKiGW5gvEYZQBSEmQpPKOg5zM3JqFlWFLGqE+YmTsElJMKnnYSYqfkmTeVUIOlRKkoFom1zsNyb3vVOnN/RVna4ODmeYvyXHhTDt4fFqTMzEK5k7xawph4zw6f2cqJIKbpPLWPhHX4otQ3KclSMaVOLKSECEXSnVAHoSCNr0zYXStSgslQQd4tPK1RQDq8zyqyP6t47BQsoy8qbadOlehOlYsSQEwZ77WtNcuM8sC20+EmxWlahp1DQSAoR3Am0VHzniVGFcSA4W21rMnQCLmSSIm5tPemTBYtrwVOBQXCd5kkbgTTe7efzt5ID97CH/b/ANVaP8GIDq9PkUlP7ufvGFE2J335zCeVK2bZdik4ZKloKkRM3lIEjn6Ex71bue4tl0ENuhC/CBBNrKPIjsCJ5SKB8RO+K01h0S4NMagBcbHSOXqfrVnT7Mq7WCStwVLMFIOon+nvfb5VY+RuJS02gaQFJ8x5rA7clHnF7UjcU5T+z4gtAEAQoA9PwsaN8NMrdCUqmBPSUyJ3MxMG+1qrqBuaDeFfTjbYTk7m3gvNpbClatSUBQnSQAPcyY9xXuMcxXiD4g18Wogm0TEDYb96l5dlIS4hxwS2B5SCPiVcmNxeD8r02NpSpoQYSenffoZpHa3srzOxj3Q/DthxHlB0knUCOggiZmQYPegGW4V9aTqUldtQ5iJJBE+WRIiR60fxOahLcCEwsgFI3uBN7TuOYoanNm0vJYcc8zk3ESfNYHeTfl1okeTTAoZvDSXIdjMxAQG3WwVrMBSrgKIO6iJkSkmBteBtRfhJnV458limwsRO+oSYMifnQXiZ1eI0sttk6Vysj/lkfxATcDpt86ZOEMkSy0rTKysS4tSlElQ9dh268qM+ic+SoQI4zXcrzEcQNsNaVrkie5+QpFznjkuJ/dEjcbXMVw48eKX1pBMafa5M0BynLNDYdXzNh+utWE7jEATVUsvVECR1LvgsUvxA6u6ot1HIfSmRKCoCfLaf8UNyxsAqdWJtYdSe1S2FLTJckJPrF9o5R3FW00jmyirz5JBxsqS2iItWwjnWiYtWKWJr0i5IhRXF1MV2U5XF02oSIozrw5VBfVXd21D31zVHFXaFxdVX0R9jvAH7G1+1YhP/AIl0WB/5SD93+o7n2HK6T9iHBH7S9+2vplllX7tJFnHRee6Ufj6GvoSqBWXgFe1o44E70EzLiVpqZVtU13UFwCOmqP8AtHyrFIxSllKltKV+7UJVveI3BG3eLU4r4zddVpw7KnD2kx6nYVzJzdZnUyyP4SAo/SfypHUSwuG2/ZDdbuFW2WYx0Hwgm9wUkXtvblEH5U+jhJL2EQh9AC4JSQIKAdvfrRrLUPoc1vJwrijutCS2v/1EEH6UYecChIBnmOd6nSMjybv0pVa1zThUtnOTOMlKdSlttrgqB+EHrYaSJO0ip+DQ02hZEqUVSmZ+GPMJ6ySepPM1Z72BSQQUpIV8QgX9etJXEXCfhjxMOkwJlubbbp6HpVJ9A4ttvrha+n17Q6n+6KcN6AwhcCCVSTYjuLbRapD6dQGlKVpJKjcmZET8gB3qrsvz5xCilZVpQo6U8gLE257U04vNEuYdQRpCwmRfTcG8pisaSN7HALSG13UCjyGiHfGcbVGjmefL0m96OYPFpUDCQ2QNRJBIm8TEA2FJOU5+t0pSsJU4kCEFUTbnvykk0VzDiRrw1IShThMBQTITtM6h2HKuo7sfdVewnB+yhZpnjqsQ2EjStUAjUL3EzzE39o9KZ8lS43qUolc33t7SaRctbW/i0KTob0jax2gRt0G9PziggBJWQCLhItzO4HMflUGr3d10gobEi8VRiSZRpIMkEn71/b60Xzca8OWW21JJIgiwUm9isbREwO3Wo/FOKQhsISoqUdiSBffeeveu2RY15bP7s61kmQQCnUb2MgQCR86Kzd3RHVQXrmFLoZ1R4i9KCkwQQIE9gYSe16Ym8vDJQXVeaDN7D07AACiPDmVhCQtYBcgeaLDeQmbgSe00OztSVKcS4SmExrSCdMi+q3SPlT23cASMrPMmSxvAVbfaO0HXfFGw8otyHP3ufel7gvGJ8UpWsgqSUg3+KRB7x0jlRTiHMUwltFwqeZMDeQTe9KLIW26YlJBJntziiOAII9FWCSn7bVwYDMw02gq/eL1KQAd1KSdyTewnrXDM8/dhDiEEJUJ0kE85sNwoelBMnw4XDxWsHWLKIEmJJTAJN5mnN7EocKkAgQnzkbp1cpi0isx7WtOMp++5CiZZlrikDXqUVebUbRN/h7bR/vUzFZQ2X2XE/EgEKOnywRJNzY+UekihC+J0YfWhUFVkoSOVt59/StMBmanCsglCTA0jcEDflYjp0qjLbZapIcSiPDaQziMW2AdJUFtkmygoC0ncjn6ipSHXG1aQsIShxQA5OBW084ufea0sr94pIbS1BUsmQE9yblREk+3pQrG5fiP2tperU3pSsaZEpJ53ubDfnR/3DdfZVAF0UO4zw04hTqkKLISIATsecneNXWobOOQtOkJ8wFgevarVcy1LwVrTIUCCD0Ig/nQfB8C4dtRUSpXQKNhBttv0vTMeie5rXM7jusHVdTyq/wCDsldcxjSjGgr8yTcQPMQQesU/faHg0pYYSkAJSpSAOQBAt9Kn4fDJTi2AlIAGrYR901y+0X/SaHPxFH5D/Naeli8PB5QC2gkDCLkaSfhsT25Gui6jqTCkqG2x99vka6xT6GkEn9GuLjlu1MmaZGlY8XDXBuW5uP6TzHb8aUn1QSCII3BsflSkOpZM22n6d03Lp3xGnBcMW7WuSZY5i8Q1h2/jdWEjt1J7AST6VFfXNXD/APTxw9qW9jlj4P3TXqbrI9tI9zUnJUcK5cjypvCsN4doQhtISPbme5Mk+tTSa8UqBJpZyXiEvPqbMkKnTCbIAG2oSST1MAe9QXAHKqXAYSbxPxZjP2lWHCWtGo+ZBUVJRykG2r+9EMn4QLsO4uQndLUwT3WeXpv3rOFMmCswxbjg1eEuB3MyPpBpzeStWwjuaz9Q97ukWfRQ1o7qOlKG06UBKEjYAACo68ZJhAKjXf8AYU7rUTQbiDiLDYJKlLX8UANhQBvMQNwDBv2pdujmA3PwPcozSHGgp6MK6sSTpHTn+FdmcKRpUSVECLjTY9RvaksfaQpxKi2xo02BWSqfRPlNrc4uKXc346xykSdKU2MoCkmxvfV7EGRTUboYzQJJ/PzhEdppS0mlb5qNiMW2Ek60gDcggwOZI5AczyEmkPKs4GJSE/tClaxCkE6gbXHmBHtXT/gzaUwUixseccr9Yj3ps6m+As/dRUrOcmwWMSpbC0airSHWzIK4mLWV3qruIUP4RRbdESCAsTChVqZPl5SmWVlLc2SBI1cykGwPKuGdcDrxYZ/aHvEAn4U6LEX1AGJkC/6KskkTybGVqwCRrQQcHzVT8M5klKiSsalQJUTy5dqdMO6ASUkbWEjkLSZMyZ504ZX9neDbCkqaRGySSCVbi53kHvQLLuFWAClSHydapLSlGAT8MAFMJ29t6Wl0wlf0mvmmxqwxvV9kIy/MEpf1hBSogiYmfke31owviVaiUqQpO4J03v0k1JZ4BCnAprFrTvKHGiFQd4VYfSoed8MLZAI1KCT5zA+aeZoL9BI0E9vmhy/EGVbOUEx2DW9oQ0haoPxKI2CiD3+cC9WJlb6m0NNpTJVGqROkAX258ulJ+TqaSnxPH0qIhSdEnlte46GiuBztKXAhlBDpSFEuEEypYCUkAwNQk2IiB7XbGSBZ9kg7XyO5ApPOvEKKSlKQAAPMoj12B5VC4jwoDKlOBMATpTsSNpPMbchSvxR9o/7GnwGYfxIMLXH7ts3JED4iNoHuZBFR/wDjrj2GcChqWsKUopmAYuAD0F7VogRMP5yiBkz2bqpITii5iQTsNh232+dEsZgy40hxtFkkrJUQNSY5dDUDDCMShap0ixMEjnv0tT5hcC280tpBiWyE+h3vyiaWDd7qHdLPc5kgclnA5kgiShPkWCFSQQDvHX/eu4zQvBYaRoUqSqJJX90X5i0kf5pPZdOExBQ4kqCDCgdo2+ljVg5RimEtBbQCZjYEgWmQDsf80lPF4XK32SB4sIE1lS1LUp8pBCRGqReBaN41c/pR/JcQpBR4rUEq0+QhRidrDlMjrfahCMwAU540KlZ1XPLp2ojh+KVIXpQkBs2ERY+m5P03oO4k0QrODnCmnKtDDNNQpMAg2N5vtty5VjzSSsEJ1FJIm35Uv5G8475kyEEzqTa8QRfvemRhWlClkk9vS1XDgWAVSSlYWO5srfBKAETuTAMT39a6PVqy2CEr0gKI5i4BvE148YFeg0zS2JoPksyU28ofgBOMH8qFH5kCgv2jv+ZhI3hZ+ZAH/tNH+HkSt5z0QPa5+ppI48xWvGKH/lpSgewk/VRHtRIubVJPJLeJnQY3g/r1rsl0QDa4rmr/AHriHUo8quW3p+re1HQkrYbGrZMpNuk0UW9hcYNLo0OR8YgGeV/yIpfecoNi3SDIJBHMVnT6NjjvadrvMJ+DVuA2PyPVFcy4TeQSW4dTvAsv/wBPP2Jr6T+zjKBhctwzP3tAUv8ArX5lfIkj2r5y4TzF93ENYdJu4sJCuncjnAvyq48NkWZYY/unNUCYSbH1SZk+1Da/UM/c3cPMIjmQP/Y6j5FWgoSIqBlmUNsFZbkajMEyB6DlSbhuOMQytLeMw8A2Kx5Y9jv9KfGcQlaErSfKoAjlYiRajskbJxylpIiw2fdcGcE22pa0iC4ZV0J2momPxwHOtc0xwSDSDn2e7gGjHbGLKCBuNBFc34hS2CokwOlz8qrDi/BvuFWJUXVKJTpbAUoIjkI2AB99RPOmPKgXZUrbUlIB5yuLm4A79KJ50+ULbRr8mq4T5SbWg8v8VkTayR7ujgLUjjigH+Q0SknCZLi0pbc8GJGoBJnSALCNpMknrPtWucPSXErKlFJ0qSEgEeXmALJJFrkmatbC4tkj7i0wCnVNiDB35gEbRQbN0Bw+IWTsBIF9iqVGwI5e8c6VGos25v0Tzc4HukHgrElBCCki/lT1/p5k+nSrFwCU4oBQJATchQIMbGx/XyqRhcvZWNZbSkBMXm5IFh6GPrUXLeHg+VwVNsbXjdNhY+1v5QaIycvNcJP9FGxxkP8AS34WdcLi2p8rZiIspJvqB7ExI3imVzErBBWNCUkQUqCtU7gyJE0MTgVoeL4djDhI8oCrlJN55p80zB5dLhOMcaVNnwVw4VHQkHTJMyRETBkz61axdeaKRuNjhLP2k8WutOltpdgDcWI1GSJHLa9Wf9n+ISrLMIUR/pAH+obz3mvn3i3DYghLjpUo6YJI39TtNOP2ZcWqwQDGJBDSgN92yRYx0Ij50c0I7ak9SDdK5v2jSqTcc6UPtYxD7TKHWSA3qhSwJInbsB3pqlKkhaFBSSJBFwRUHMWUONqZdEtKuO0cqjTzOzG488JJze4VALzResBKiVrUBJO5Nr015w+nDhBRGpKtZV/GtCSUkyf4gKGcR8NIYxSfACzCgfNBAI6W96G55jFLgKiwO3er0GGu6q1m5wRHhjBh9A1De4n7xtvvuSasPLMO0BphOkSVfeAVJSZi4UDz6VWvD+bOBQ8GAQAFEzBE2AAHISaIcXZ6suKZYUIVGspGnuZMSTHfaKVMbi42vQh/SAimf500hRSyYmbbSZMmeQg9ttq75Fi3FOBbaipd1eQEIP3SCD8W+/r7JeDbWvUfjcQQZsAJFt977iKYuEM1dbUA4COWnTGoX6iQZtXBhZ1DkK5IeNpCGceu+LiS6hpSIBDiVfeCT8Q69+nzrhhs+WJCTbSNuZ5/IRTnxFlyXHQpGnUpoqBUb9CIm5BifWlFLf7E8lK0godAIUAfIoi6b3/2q73iVpcRZ8kJrBFQHC8xGUrUrxCY5b2Mjn3Brrl+GKHAlQPxc5AJ9d6zMsaoToIIn5g7x711wWZlAQBBM7nl0seVKEyFqOwgOVt5A2tvDEmBMwIHrYe+1EUgK0JBgruuO34UIyzM0vMJUUghEGQZBMXsN+dMWCwwSCuIUu57doq+kgMzwLwKv8/MJDUu2W48lcs0zZphOpxQSke/yAufaouLzBCmvEQZSRIPX23ofxHw8MSQpRukyBynv2rplOBlaGjdKPMuNt7D5/hW8XPDiKx2WT/sjeBSMPhtS/upK1+u5/tVRYl8rWtat1KKj6kyafftHzbQ2lhJ8zl1f0A2Hur/ANtV4ujxigqONlYo1wdbCjJJrqeleXoiqq/BtQrFijbqKD41NAeitTb9i+DDmbMTshK1/JJH/wAq+n0IAJNfOf8A9PyP/wAorth3D/3Nj86vniTHKaalBAUpQA694oT3hjC49lLsZQHPc+XqdakJAJSI+L1nkfSk17O3kupLa1yD1Jn162n51JzvEEq1rMqtfmeXvShjcWUAqmFH5ivNukkkkJ3HnCBZcU6ZzxDqbCpEkXjYHmPY0ms4xLuJQyVEKXeYJAAvffe/50IYxxI0qXAmxJ5DeP1zqblGIbbJVqBBVddyqALR7wJjlWpLM5zcrW0UF9S9cxeI8SEICWtSog6A4AobnoSEjbaujeNcS6sLb86k+R0yQi4JIEXmYm+55UxZdi21jSgImRzBWNolR5WG1GVNN+UBkrXB5ACR1JP996Q/UgdO2lpvaOXZSBh0vMgKauVKMBKvMSd7cgSZiPyqW1xNibNLKgWoCtMAJI2lckKMx7iO9WRhspabSVJbTMElI6x9bgCtcNlGHxCdSW0JVIWoxANukXtyPQVZkwceptqHOFY4SVkmfPaQXtSlWjyixIkkH7yjHYC/Sm1WazpbRAT7zeNiAbE8+4rcYVt15TOo6ANR+6G9x5bXJtEzv2qO9lqQ4VHUlvUNKkhJBJAEBIuTIAj+1cdjjfn5KjJA6xXCNOZroRYC43KpgJFyQbJFo+W9JqGEvvjEPQEND92qfKXFEfD/AEmAItPWiaMtU94XhsqCSqFBdtSdMySRNgT7n5Dc7UWgQT5lWSIsm8TuY2q9DFGycBc0Bt/dCMYP2t5KZ/doIUvvBsIvuRft61rx7k/lTiUDbyuDt91X5fKumBcCeckmT3PWueP4r1BxloJUdJTKiDJ2ICI8wE7m1abI2RxbT+FZcrnTSW1cOEOK3sNZKtTZ3Qbj26H0q0cuz/D4lMavDV/Crr2Vt84qgMClWsIF+VutNuVNqk+ZMoIkSZk7WjuD6VlTtdGbaqfp5b6Raes64ed8RTwcUpspuE6DoPUEDUfS9JK8oHjGV6iQRJjSQZ7ATAmO1HHPHOooUCEiIiTyMkHlAUI6EnpQLMHUJhSipu40mTBO5mefl+HrUCSSSiTXoDa1NPEWM62i0Nz7CIZs2Cla/unSLAjzQOpsO1CsO8XHQHJSAYUQOY/FVx9KsPhTJ2Xz464W5EQR8ANxIixgfqaP5lwi0pGpKAFTJAEBR/L1q4m/1o/NXwD1YKH5Hw3g3G0lI1GyjeCO5i9GMa5gsMg+KEQAYAEwBa3650vPhzB6lgwkQFXATG9zHepGR4xp9xRdCdAkpJVqMmZtEAAbd5oWx4IPIRHC82umCQp9ba2mVoAJBUsDoATzB9exoTxZlDanVtxpU6fKSLWEgzuFavaKd2cczqPhBUzpOmQBCbHTsbRtS99oHlU35R51EzubCN+4IPyqZJCCCOyCXOAKqtpl5DvgPfduFcjG9epwnhSXAYKiYE6ugt1p1zPAjEYfWAPFQbE81DaT3FjS67jD8D7YStJjSReeV+Y6EVMeoMgJaPQ/nql4yH9DjkKwPs7xyHGEtCI1ACxnlNuw+VWQ4qq0+ytaS4oyEwghCf4rjUR1irDxDkVq/DmAMLvMoPxE/wCSvRRMxxGlJP06mu+CSnDMKcdMGCtZ/IfQVHy3Dl1fiq+BJ8g/iPX0FJX2ocVjV+zNmQk+bT95zkkddP4ntTvJtIE0KQbNsep95Ti/iUbDoOQHYACohVv+ppu4K4NUoJdxifMbhvkkHYHrRLiDgMK8+GMH/wAtRsf6Vcj2NvSrteCh0VXq9q1+ftXbGYdbSyhaSlY3B/X1rkk0RQkp0UGxyb0bcTehWNFBdwiNTv8AYCuM0I/iw7gH/qQfyq/M9y0voASoApMidto/Ovmv7KMb4ObYUkwFKLZ/60kD/u019TihOaHN2lXIvCqnMeHMUQStsjfYgxbmQarLOUOFZkaQLX6elfRfFeK8PDrPavnLFY0OOLG5SJMdzET6T9Kz3aNkXU279VMEILqUVWESuUE6SFQDfmOZ62rd/h1xCQQQZ3vEDckC0xb6danZfmOHbSFKUC5M/wBN+vUdamHGh8AagE7AAgz5gIPQGZnsKD4sjTgY9VusjZtpcuCcDrd1pV5QCkBUAEmeljex6TRfBYfFMqUFSsqUVAiVAG2073P4UXyXhtLTQQpJJN/SRsOY5ne16YMuQllCWkp+GTBN5Mn3vzpSefqOMfJFZjhLLefuIVDhXBk6ZOrygkAG3mUYt9BW2Oz7EoDa060akgTCdOqYExJmJIHUnpTTh8GhakqUBAO1/jkk359v811zPBtp0KLaYRdKbAJ5DtzJ9qhr4yL2qr3W6kBwvEDxSkqVBg6yURMSbG0qsTty+ZHFIGISkNqSlKVSIM3SbiBEXBkevSsxOWoS20sN+clWkKvPbcRcap3tfagH/CXGnIw7gWR/qFPlCVTqVKzImOfW5FMxNiPIpLSiTmM1XonteKDLJWo3TMmd+cRykW36VV3EWchSi8tUBVr8iTt+u9MWbY1Yw6W3SFSfMABb+GSN/W0xVdcTPeIFDtaKNp2AuL+wwEGXc1mzknlS3cadPlNzsfz+V6lMcMjRpgk38xKgZFx9fzpfyVTzZBSCVFBAB2gaT7QIM96emHw5hUkBXiqABa5gnc9D8JF+1tq7VPkBBacJjTRtaM8pXRleIZcQG416ErTqAKVWki1/KenSedMGXoDvi+CQFj/UT8JBhM35jym467inBKAlKPKm6RqTEGJAJBMwOYETSzh8o8LFF9CdTaVyrVeOewuSPxNKOmD8HlMNFZVjZPliEMp5ydRkjc36CkXjxgYhOlsWacmBzKoE7fdg+3pTRluII1ypSRoMhRkSTA83WeQ72qN/w4pITZSvqfcdudUk3ROFJXTyCS3FLvCWeBhSWnoTceeLKkCPS0b9DVkYfE+ImQRETI2J7HmNqSc64XbeSkpIQ7Nhuknv7UHwmLxeXHQRqSpY0gnypEKNj058jNWi6/2nPkiysa7ITdxkhJYUk7KiZi17wIuYnelzOuHkpbU+24PDUB5YkjVYwBy57cjUnCZoMxSsrlsNmNIIlZi4uRMbEelS8NgW0JWlCzqQNQF5A3Gqd46RcetcHmNxBV2sBYM5UP7PMudBKlqUqRIWTJ7x3Mnadh0rlx3iNWJCBs2kD3Nz+VEMbn62GllQ1PEHlAbKjKee0chvSsnzgLJJJJJJ5k3/ADoOofuO6krNbTRRTLBKHE9QPncU2Ztwe1i0JLiQDAIUPiBjr+VKuTA3HUgD1q1fhSB0AH0pr4Ky3SXxhZU7iJLCWOF+FUYNI1EOOJKtK4gpSr7v+aJBsvrKAYQPjUPwHeujhU6rw29vvK5JH96j8UcQsZbh+RWR5ETdR/iV26nntW/QaNreFQvc87nHKhfaDxYjAMaGyA6pMIA+4nbUfy7+lJf2V8JKfdGYYoHTJLCFfePNZH4VG4T4Vezd84zGav2edV7eMRyA5IEflVzPMJSlISNISISBYADlVeVC7kbCuOIxSW0+ZQEmJNDs0zlDLZUtURSTh8YvEOeK8SD/AMtP8APMjqeVL6rUtgZZ5XJ5zzImMWga/ijyuJjUPfmOxqt8x4LxbaylKfETyUkgSPQmx7U0pzVbCdU2mydwf7Vu3x1hVbupSRYgnY/mO9U0vxFkoo4KghUM8moWLa6UR01GcG5/X6/tWgVAKDsuqacQ6kXbWFJP8ySFD8BX2BlOPS+y08gylxCVD0UJr5CxDVXt9gvEIdwi8Io+fDny921EkfIyPlQqRUb+1V8pwpAmVGLd6orFYEthQQmVT5j1J6dAK+heOMtL+HUgDzASPXlVCZostLJXqmBKeh2ildVuBBCb0ZFEFQEcLvLbDg0qAsRNxab/AFqThModGHV4aVKOsERuNO8dJ5+gopkEuuSHSkH4kyACL+vb9GnXBNhCVBUjT2JmsybVyNxgrUZGwC0o4nH4jRhVqStCkpUCLxub+pkiY5elEMPmxT5ipWoJ/iVcwIG+xIPXYczUnNWfGxLQ0alQNuiuXbzKSZ7USxOBabKvEQpQAgpSnygz/FufvGetQ6QCtzVaNwe3ChZdxivyoSApQHpfv31FQjlFFsHnofUDiPK3MbwTG+odB/LS5mGDwqHUlSfDEJBQkGyjuZHSSb85miaeCm3P/wBgkhV9UadBjSNPUx0vFQfCOapS4beeUX4g4nw4CEtBR8M6SQDAkRuNiJKvat14tOFwesHTqFgBaSN4PMTMdhUb/wC30qc/dqWTEEC/lkkCffvsKIY/L1aPEeSBps02TJFjKlcp5+971LG+MRs47nsEJ72xNo+3cqvs4zZxYAV0G+8wd7DkTvJvQrJwFO6yNQQfhiZPX2tXTMlSpSj1NceCHV6ypF1kmbxF/TvTcjaY7b2S8Lt0gLlbWXZQw/hwEo0k76gArpuO+3oKAZ7g1YR0O8uW/mtYH3F6j8McYhzFLBUAE2FoBA3v6z8qYc3zXDvqVhyrUZgi8bbA9dvn1pB4r9wymBJsfXYodg3/ANpWlaFFKiAFggwdMSBe+/1vFNeMy0KREJS3BCjF+V7DtelU5QplSQlXlQoKB5oTMqEd73O/tW3EXGKkMpCjpSFQqCAXADsI2ETPaoZGHg1lWkvG1F8VksYdQQoLFikqsdwoQfYUqMcZLSfCJClALV4hBEaFQUq7ggiRbbrRXMOI0vlKMOSoGFKKZjT0BNjMRbt1oQxwgVQXSEjzBGytRVYcttI/DpRW7AT4qG2MtYNlc2peS8SpeKIPmMq3Akm/WdiLd6LNYU4kpS8s2XOmxAHInlG461X2GyF7APeKlPiaTq1AgJAJgaxb+W+1N/CuZ+Mpz9oAC1RAQbJ81vLvYgGe9VliYOuI4+am5if5wiGN4UZSgqbKm1IWs2Ud1b3+VMPDraCLeGpYSNZFzMRc+orMFlZcOsrIbIhYP3jyAM8uvei2WvMyttlAAbIBgQCbz6m25oul0pkIfKaHYdyganUUwsbk/wAJe4uykKZc0pufMTzJHM+wpLwzMNgc6trFM6hFBhw+0LrPlH3RafU1oa3R+KymLMZNXKFcGZSSrxVDyJM+qu3YU1OanTpRYD4ldPTqa6YfDlYAA0NjYCxI7DkKGcT8TtYJGhACnIsnknur+25+tE0mmEEexv1QXdR3FdOI8+Yy5jkVkeVE3Ueqj07/ACqu+GOG3s4eOMxhV+zz5RsXSOg5Nj6xXHhzJHc4xKnnyo4ZKvOrbxVD7ieiRzi3KriYhuEwEpAAEWAA2AHKmCOylbNNhpISkAIAhIAiB0FDOIc2QygrJ5bVNzXHIQgkn07mkHMEqdJcdtvpRO3QnvS2p1TNOy3c+S5DcO6vEvBT8hAIKWzurmCf5e1FM78NKNayElP3tqUsRni0uhKU+IsWBHTuakqwjuIIW/sNkjYf3Nea1MrpXb5cBTaiOYx/FEoQSlvmo7qHbpRrBZE2EAaR70SwuDSkDSPWuqlRYC1KPmxTcBdSp9dye29c3E/L9fr3ruW4BM71qRNzXvkNDX2+1TOE88Xl+MbxKZ0gw4kfebNlD15jukV443b0qKpmaqQrgr6rQ+h9pLragtC0hQI2UkiQarzjng0PhS0C5BmOfQ+sgUvfY/xoMOsYJ9X7pZ/cqOyFH7hPRR26G3MVc7zA35H6VQgOFFWa4sNhfLicPiGRpWkje89OvPkaMYDOLAr1AgpkzYgHpN+VquLiHgtnEnX8C4soCfmOe3bnSVnHAuIaI0J8RJNyE6iO8C9Zmo07udt+oWxBq2OG0lCcI6p0urD3hEpBRB+FQTEXjeSffrXZOOW0VNKeKwkpmD8RsSZ20zFhy+ddsVwm4GgHpS2LmEEKnvO53vH4VAcypHinwluKSRAkbGb+1JSEcO/hGM0EQGcfNTmFtgwV+JquUBKlEKmZkHlMT2p2yzDh1HkgIJi0XIN5PMg1WGYZFoQQhUkwUpA2i9zzqxfspxPiZcgk+Zta0q63VNd4Af3wEnJ8RDjTB9U1IJbQoNgKVFvXtSdjsbiFoc8VPlCTCikgz0B5jenRP0oZxHhi4ypKCJj4Z3pyKUNFcAdlnu3OduJVK49mYSTGohM+p/tNEkZCtgKKViViE6e87kc569aEcSkpUgkQApUzY6kxI/7q8yzNV+IlVyJHMge42sfzoDxIW7mnC2dNtrK2/wCGuMwrw4uTJJk/xDa8b27UUyTGpQ4XVlKhMzcyZESOu29EXl+MUnxFSQLWgduxsajOZQltTYAAJClGDqm8/K4tvS3jB+Hcph0IcKKsPLcxSsKWNKW4u4qPMdvL72vSzmnCut8rRZPmSlJM3vJmdlSJ6QK44PHJSz4fh6kA6lIB58wDA5z+FF8jzBnEavDRpUkwbkG2xJP41wL4hbVzox3SYxhcVlxBSgLibEwTMEEHrBX23sLVYPDuZsPFuB5zBKVfdkEx0JBrviWA5oQ4qEndJSCTHUn8AOvKoDfB6nCktKKQkyFzA9je+23QVcyeORi3en/UPpY02aCl51lyVrEE3EaQSdQnoN7hJj51KyjgZoK8RepNwdMxMdSLj0B5UzZdl/hiVK1riCoiPkOVTCaf0ug29Unt2WfNrnVtYfqvEpAAAAAGwG1RcS/oUgBBOtRBIFk2JlXa0e9A8+8T9qw5AUpGoGUqUkoImbCxBBIgi/yo0nDrc38ifqf7VpA3Y4pZxNrR3EX0pGpXQfq1dWsEB53SDF7/AAp/XWoWb57hsEkgmV/wJus+vT1NVnxDxW/iiQo6G5s2nb/qO6j9O1XyVFgJp4o473awvoXen9A5/wBXy61X2W5W9mOJ8BtRDYu+6TOkG8Sd1q/zUKXH3UYXDp1POWHRI5qPQDc1deR5CzgMJ4SYBHmcWbFxcXUfX6CuNDAUZKIcPYJthpLLSAhtAhKR+PcneoHE+beH+7TdcSOg5SelCXOLyD5E+U2Ditiew5moedY9IbK3DJWI7k9qy9X8QZHbWZcrKG0VKBUpzWtJ+I7D+kfnQvOMarEw2ySEj4nPyFRMvy993/UJS3voHMdz+VNGBwiUpgAR2rzskrnP3ONn7KOUIweRpbjTvzJ3PvRhLcCOtbqICv1eo7zpIJHtSzrcbKnheFcWFepJImvHYKQTv+NckOFIiq1tXKsFxFaqbArKyvoZQ1yWmZ+tcVt1lZXKVGdamrc+zP7RbJwmMVCtm3VGyuiVnkrkDz9d8rKqQrAq1gjmLitwgV5WVRWrKh5pl4dQUkb0uN8IHXA8qY+Kxv0ivKyhyRtfW4cKCwFc8x4PIQoIXJI5+h6UC4SwpwDi2FHyPfevAcG2+wP9q9rKHNp2eGXAUqNAa7CanUnYmo7iJrKyvMlo30nOyVOO+EjjGR4Ih5KiqAP9S0KH9UAX/l70k5W02Giw55VoXCgZmeXvzrKytMguh54/pO6F/VS7YfFeG4UIGoch27HlTNgcN42lalCAQQnZSb3BM+orKykJhspw5Wq3OEWfw7AJ0IANwYt3J6cqFJyLU4h6SlIV8YOkarADX8O8VlZRNIHTOO5xQNVL4MdgJ+Zw2HSUKfdbKlCEgrTpPp/FR1p9skpSpJKbEAjy9PSsrK24dsZDGCh/VrBc90tlx4WOPgVzDa1fyjqd/lWVlPHCCo2Y5lhsINTrgB5TdZ9Ei9V7xH9obzsow4LKP4v+YffZPtfvWVlc0XkqpPZJL+L6mTJJJMkz1PM0Ix+bwIT5lGwAuSdoFZWVLnFS0BWh9nmV/sDJeWAvEvR4lxLYGyB6bnvTHmOK8Ual/DExNv8ANZWV574hq5A4xtwFKQVuvPuqZZA06pKjsn0/tTDhMn0kFxRcUOath6DlWVlZMhrAUUp6zA6Vs24NM1lZS95UqDilEivCiAAK9rKmlC9WfkKjLPvXtZVXLl//2Q==" alt="Grilled Chicken Breast" class="recipe-image">
+          <div class="ingredients">
+            <h4>Ingredients:</h4>
+            <ul>
+              <li>2 chicken breasts</li>
+              <li>1 tbsp olive oil</li>
+              <li>1 tsp garlic powder</li>
+              <li>1 tsp paprika</li>
+              <li>Salt and pepper to taste</li>
+            </ul>
+          </div>
+          <div class="procedure">
+            <h4>Procedure:</h4>
+            <ol>
+              <li>Rub the chicken breasts with olive oil, garlic powder, paprika, salt, and pepper.</li>
+              <li>Grill on medium heat for 6-7 minutes per side until cooked through.</li>
+              <li>Serve with steamed vegetables or brown rice.</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    
+      <!-- Recipe 2 -->
+      <div class="col-lg-4 col-md-6 d-flex">
+        <div class="recipe-card">
+          <h2 class="recipe-title">2. Salmon with Asparagus</h2>
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSByLPPJlr-Uflf99UIW2xYRYe-qQ3sN9K7QnmfNITED-JdrMpXy0kkQz58aZZcKfnFzeI&usqp=CAU" alt="Salmon with Asparagus" class="recipe-image">
+          <div class="ingredients">
+            <h4>Ingredients:</h4>
+            <ul>
+              <li>2 salmon fillets</li>
+              <li>1 bunch asparagus</li>
+              <li>2 tbsp olive oil</li>
+              <li>1 lemon, sliced</li>
+              <li>Salt and pepper to taste</li>
+            </ul>
+          </div>
+          <div class="procedure">
+            <h4>Procedure:</h4>
+            <ol>
+              <li>Preheat the oven to 375°F (190°C).</li>
+              <li>Place the salmon and asparagus on a baking sheet. Drizzle with olive oil and season with salt and pepper.</li>
+              <li>Top the salmon with lemon slices and bake for 15-20 minutes.</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    
+      <!-- Recipe 3 -->
+      <div class="col-lg-4 col-md-6 d-flex">
+        <div class="recipe-card">
+          <h2 class="recipe-title">3. Turkey Stir-Fry</h2>
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFPkScGwrlWIIxxEBms8oIqC-NeUBVq7xzgw&s" alt="Turkey Stir-Fry" class="recipe-image">
+          <div class="ingredients">
+            <h4>Ingredients:</h4>
+            <ul>
+              <li>1 lb ground turkey</li>
+              <li>1 bell pepper, diced</li>
+              <li>1 cup broccoli florets</li>
+              <li>2 garlic cloves, minced</li>
+              <li>2 tbsp soy sauce</li>
+              <li>1 tbsp sesame oil</li>
+            </ul>
+          </div>
+          <div class="procedure">
+            <h4>Procedure:</h4>
+            <ol>
+              <li>Heat sesame oil in a skillet over medium heat. Add the ground turkey and cook until browned.</li>
+              <li>Add the garlic, bell pepper, and broccoli. Cook until tender.</li>
+              <li>Drizzle with soy sauce, toss, and serve.</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    
+      <!-- Recipe 4 -->
+      <div class="col-lg-4 col-md-6 d-flex">
+        <div class="recipe-card">
+          <h2 class="recipe-title">4. Shrimp and Quinoa Bowl</h2>
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcReHDklZLx4BiAuhZcP7Ibv8qbJ21efBsyo5A&s" alt="Shrimp and Quinoa Bowl" class="recipe-image">
+          <div class="ingredients">
+            <h4>Ingredients:</h4>
+            <ul>
+              <li>1 cup cooked quinoa</li>
+              <li>1/2 lb shrimp, peeled and deveined</li>
+              <li>1 tbsp olive oil</li>
+              <li>1 cup cherry tomatoes, halved</li>
+              <li>1/2 cup cucumber, diced</li>
+              <li>Juice of 1 lemon</li>
+              <li>Salt and pepper to taste</li>
+            </ul>
+          </div>
+          <div class="procedure">
+            <h4>Procedure:</h4>
+            <ol>
+              <li>Heat olive oil in a skillet over medium heat. Add shrimp and cook until pink, about 2-3 minutes per side.</li>
+              <li>Combine cooked quinoa, shrimp, cherry tomatoes, and cucumber in a bowl.</li>
+              <li>Drizzle with lemon juice, season with salt and pepper, and serve.</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    
+      <div class="col-lg-4 col-md-6 d-flex">
+        <div class="recipe-card">
+          <h2 class="recipe-title">5. Beef and Broccoli Stir-Fry</h2>
+          <img src="https://del.h-cdn.co/assets/16/15/1600x800/landscape-1460663972-delish-stir-fry-beef-broccoli.jpg" alt="Beef and Broccoli Stir-Fry" class="recipe-image">
+          <div class="ingredients">
+            <h4>Ingredients:</h4>
+            <ul>
+              <li>1 lb lean beef, thinly sliced</li>
+              <li>2 cups broccoli florets</li>
+              <li>2 tbsp soy sauce</li>
+              <li>1 tbsp oyster sauce</li>
+              <li>1 tbsp sesame oil</li>
+              <li>2 garlic cloves, minced</li>
+            </ul>
+          </div>
+          <div class="procedure">
+            <h4>Procedure:</h4>
+            <ol>
+              <li>Heat sesame oil in a skillet over high heat. Add beef and cook until browned.</li>
+              <li>Add garlic and broccoli, and stir-fry until broccoli is tender.</li>
+              <li>Add soy sauce and oyster sauce, toss, and serve.</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6 d-flex">
+        <div class="recipe-card">
+          <h2 class="recipe-title">6. Egg and Turkey Breakfast Wrap</h2>
+          <img src="https://static.vecteezy.com/system/resources/previews/044/636/596/non_2x/wrapped-tortilla-with-eggs-ham-and-cheese-for-breakfast-with-ample-copy-space-vivid-background-photo.jpg" alt="Egg and Turkey Breakfast Wrap" class="recipe-image">
+          <div class="ingredients">
+            <h4>Ingredients:</h4>
+            <ul>
+              <li>2 large eggs</li>
+              <li>1 whole wheat tortilla</li>
+              <li>3 slices turkey breast</li>
+              <li>1/2 avocado, sliced</li>
+              <li>Salt and pepper to taste</li>
+            </ul>
+          </div>
+          <div class="procedure">
+            <h4>Procedure:</h4>
+            <ol>
+              <li>Scramble the eggs and season with salt and pepper.</li>
+              <li>Layer the eggs, turkey, and avocado on the tortilla. Wrap tightly and serve.</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-4 col-md-6 d-flex">
+          <div class="recipe-card">
+            <h2 class="recipe-title">7. Grilled Tuna Steak</h2>
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCNJNYMk3T2nCeIm5gI_OLtryCt9tr_P-Srw&s" alt="Grilled Tuna Steak" class="recipe-image">
+            <div class="ingredients">
+              <h4>Ingredients:</h4>
+              <ul>
+                <li>2 tuna steaks</li>
+                <li>1 tbsp olive oil</li>
+                <li>1 tsp garlic powder</li>
+                <li>1 tsp lemon zest</li>
+                <li>Salt and pepper to taste</li>
+              </ul>
+            </div>
+            <div class="procedure">
+              <h4>Procedure:</h4>
+              <ol>
+                <li>Brush tuna steaks with olive oil and season with garlic powder, lemon zest, salt, and pepper.</li>
+                <li>Grill on high heat for 3-4 minutes on each side.</li>
+                <li>Serve with a side of grilled vegetables or salad.</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      
+        <div class="col-lg-4 col-md-6 d-flex">
+          <div class="recipe-card">
+            <h2 class="recipe-title">8. Chicken and Sweet Potato Bowl</h2>
+            <img src="https://i0.wp.com/aflavorjournal.com/wp-content/uploads/2024/01/Roasted-Sweet-Potato-Chicken-and-Kale-Rice-Bowls-17.jpg?resize=1024%2C1024&ssl=1" alt="Chicken and Sweet Potato Bowl" class="recipe-image">
+            <div class="ingredients">
+              <h4>Ingredients:</h4>
+              <ul>
+                <li>2 chicken thighs</li>
+                <li>2 medium sweet potatoes, diced</li>
+                <li>2 tbsp olive oil</li>
+                <li>1 tsp smoked paprika</li>
+                <li>1/2 tsp cumin</li>
+                <li>Salt and pepper to taste</li>
+              </ul>
+            </div>
+            <div class="procedure">
+              <h4>Procedure:</h4>
+              <ol>
+                <li>Preheat the oven to 400°F (200°C).</li>
+                <li>Toss diced sweet potatoes with olive oil, smoked paprika, cumin, salt, and pepper. Roast for 25-30 minutes.</li>
+                <li>Grill the chicken thighs until fully cooked. Serve on top of roasted sweet potatoes.</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      
+        <div class="col-lg-4 col-md-6 d-flex">
+          <div class="recipe-card">
+            <h2 class="recipe-title">9. Baked Cod with Vegetables</h2>
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQVynOnDzOmz1AITmHAr24GybUGR_oh1O1sDg&s" alt="Baked Cod with Vegetables" class="recipe-image">
+            <div class="ingredients">
+              <h4>Ingredients:</h4>
+              <ul>
+                <li>2 cod fillets</li>
+                <li>1 zucchini, sliced</li>
+                <li>1 yellow squash, sliced</li>
+                <li>2 tbsp olive oil</li>
+                <li>1 tsp Italian seasoning</li>
+                <li>Salt and pepper to taste</li>
+              </ul>
+            </div>
+            <div class="procedure">
+              <h4>Procedure:</h4>
+              <ol>
+                <li>Preheat the oven to 375°F (190°C).</li>
+                <li>Place the cod and sliced vegetables on a baking sheet. Drizzle with olive oil and season with Italian seasoning, salt, and pepper.</li>
+                <li>Bake for 15-20 minutes or until the cod is flaky.</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      
+        <div class="col-lg-4 col-md-6 d-flex">
+          <div class="recipe-card">
+            <h2 class="recipe-title">10. Turkey Meatballs</h2>
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfwtiiqtvcxg7sFubQ4LmwL9Ou8-uKe6SCXw&s" alt="Turkey Meatballs" class="recipe-image">
+            <div class="ingredients">
+              <h4>Ingredients:</h4>
+              <ul>
+                <li>1 lb ground turkey</li>
+                <li>1/4 cup breadcrumbs</li>
+                <li>1 egg</li>
+                <li>1 garlic clove, minced</li>
+                <li>1 tsp Italian seasoning</li>
+                <li>Salt and pepper to taste</li>
+              </ul>
+            </div>
+            <div class="procedure">
+              <h4>Procedure:</h4>
+              <ol>
+                <li>Preheat the oven to 375°F (190°C).</li>
+                <li>Combine all ingredients in a bowl and form into small meatballs.</li>
+                <li>Place on a baking sheet and bake for 15-20 minutes.</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      
+        <div class="col-lg-4 col-md-6 d-flex">
+          <div class="recipe-card">
+            <h2 class="recipe-title">11. Grilled Lamb Chops</h2>
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSSDwNQ0LcouqmbZg1q8pLsD5sEAwAfVL4IAg&s" alt="Grilled Lamb Chops" class="recipe-image">
+            <div class="ingredients">
+              <h4>Ingredients:</h4>
+              <ul>
+                <li>4 lamb chops</li>
+                <li>2 tbsp olive oil</li>
+                <li>2 garlic cloves, minced</li>
+                <li>1 tsp rosemary</li>
+                <li>Salt and pepper to taste</li>
+              </ul>
+            </div>
+            <div class="procedure">
+              <h4>Procedure:</h4>
+              <ol>
+                <li>Rub lamb chops with olive oil, garlic, rosemary, salt, and pepper.</li>
+                <li>Grill on medium heat for 4-5 minutes per side.</li>
+                <li>Serve with a side of mashed sweet potatoes.</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      
+        <div class="col-lg-4 col-md-6 d-flex">
+          <div class="recipe-card">
+            <h2 class="recipe-title">12. Egg and Chicken Salad</h2>
+            <img src="https://static.toiimg.com/thumb/58750154.cms?width=1200&height=900" alt="Egg and Chicken Salad" class="recipe-image">
+            <div class="ingredients">
+              <h4>Ingredients:</h4>
+              <ul>
+                <li>2 hard-boiled eggs, chopped</li>
+                <li>1 chicken breast, grilled and chopped</li>
+                <li>1/2 cup lettuce, chopped</li>
+                <li>1/4 cup mayonnaise</li>
+                <li>Salt and pepper to taste</li>
+              </ul>
+            </div>
+            <div class="procedure">
+              <h4>Procedure:</h4>
+              <ol>
+                <li>Combine all ingredients in a large bowl.</li>
+                <li>Toss until evenly mixed. Serve chilled or at room temperature.</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div>
+          </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>    
+   
+    

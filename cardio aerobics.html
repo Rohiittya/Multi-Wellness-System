@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scrollable Video Page</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(to right, #9b71ae, #451754);
+            font-family: 'Poppins', sans-serif;
+            color: #fff;
+        }
+        .video-container {
+            max-height: 80vh;
+            overflow-y: auto;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .video {
+            margin-bottom: 20px;
+            background: #f7f5f8;
+            border-radius: 8px;
+            padding: 15px;
+            color: #333;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
+        .video h5 {
+            color: #451754;
+            font-size: 1.5rem;
+        }
+        video {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+        .benefits {
+            font-size: 1.1rem;
+            color: #444;
+        }
+        .benefits ul {
+            margin-left: 20px;
+        }
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+        }
+        footer a {
+            color: #fff;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">My Video Gallery</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Videos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container my-5">
+        <div class="video-container">
+            <div class="video">
+                <h5>Morning Energy Boost</h5>
+                <video controls>
+                    <source src="c:\Users\muska\Videos\2\1.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <div class="benefits">
+                    <ul>
+                        <li>Boosts energy to start your day.</li>
+                        <li>Improves flexibility and balance.</li>
+                        <li>Reduces stress and anxiety.</li>
+                        <li>Enhances blood circulation.</li>
+                        <li>Strengthens the mind-body connection.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="video">
+                <h5>Strength Essentials</h5>
+                <video controls>
+                    <source src="c:\Users\muska\Videos\2\2.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <div class="benefits">
+                    <ul>
+                        <li>Builds foundational strength.</li>
+                        <li>Increases muscle tone and stamina.</li>
+                        <li>Supports healthy bones and joints.</li>
+                        <li>Improves posture and body alignment.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="video">
+                <h5>Rhythmic Cardio Dance</h5>
+                <video controls>
+                    <source src="c:\Users\muska\Videos\2\3.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <div class="benefits">
+                    <ul>
+                        <li>Burns calories effectively.</li>
+                        <li>Improves heart health and endurance.</li>
+                        <li>Enhances coordination and rhythm.</li>
+                        <li>Boosts mood and mental well-being.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="video">
+                <h5>Peaceful Meditation</h5>
+                <video controls>
+                    <source src="c:\Users\muska\Videos\2\4.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <div class="benefits">
+                    <ul>
+                        <li>Reduces stress and promotes calmness.</li>
+                        <li>Sharpens mental clarity and focus.</li>
+                        <li>Enhances emotional well-being.</li>
+                        <li>Improves mindfulness and inner peace.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="video">
+                <h5>Pilates for a Strong Core</h5>
+                <video controls>
+                    <source src="c:\Users\muska\Videos\2\5.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <div class="benefits">
+                    <ul>
+                        <li>Strengthens core muscles.</li>
+                        <li>Improves posture and balance.</li>
+                        <li>Reduces back pain and tension.</li>
+                        <li>Increases overall mobility.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="video">
+                <h5>HIIT Power Workout</h5>
+                <video controls>
+                    <source src="c:\Users\muska\Videos\2\6.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <div class="benefits">
+                    <ul>
+                        <li>Maximizes calorie burn in minimal time.</li>
+                        <li>Improves cardiovascular fitness.</li>
+                        <li>Boosts metabolism and endurance.</li>
+                        <li>Strengthens major muscle groups.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="video">
+                <h5>Recovery Through Stretching</h5>
+                <video controls>
+                    <source src="c:\Users\muska\Videos\2\7.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <div class="benefits">
+                    <ul>
+                        <li>Alleviates muscle tension and stiffness.</li>
+                        <li>Improves flexibility and range of motion.</li>
+                        <li>Prevents injuries during workouts.</li>
+                        <li>Speeds up muscle recovery.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="video">
+                <h5>Explore Nature’s Calm</h5>
+                <video controls>
+                    <source src="c:\Users\muska\Videos\2\8.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <div class="benefits">
+                    <ul>
+                        <li>Boosts mood and reduces stress.</li>
+                        <li>Encourages physical activity and exploration.</li>
+                        <li>Improves mental clarity and creativity.</li>
+                        <li>Reconnects you with nature.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="video">
+                <h5>Unwind Before Bed</h5>
+                <video controls>
+                    <source src="c:\Users\muska\Videos\2\9.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <div class="benefits">
+                    <ul>
+                        <li>Helps unwind after a long day.</li>
+                        <li>Improves sleep quality.</li>
+                        <li>Reduces stress and anxiety levels.</li>
+                        <li>Promotes relaxation and balance.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="video">
+                <h5>Ultimate Full-Body Workout</h5>
+                <video controls>
+                    <source src="c:\Users\muska\Videos\2\10.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <div class="benefits">
+                    <ul>
+                        <li>Strengthens all major muscle groups.</li>
+                               <li>Enhances flexibility and balance.</li>
+                            <li>Boosts overall energy levels.</li>
+                            <li>Supports joint mobility and functional fitness.</li>
+                            <li>Improves posture and reduces muscle tension.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer>
+            &copy; 2025 My Video Gallery. All rights reserved. | <a href="#">Contact Us</a>
+        </footer>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    </body>
+</html>
