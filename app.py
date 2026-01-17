@@ -56,6 +56,7 @@ def init_db():
         cursor.execute("""
         CREATE TABLE IF NOT EXISTS users (
             id INT AUTO_INCREMENT PRIMARY KEY,
+            username VARCHAR(255) UNIQUE NOT NULL,
             email VARCHAR(255) UNIQUE NOT NULL,
             password VARCHAR(255) NOT NULL,
             created_at DATETIME DEFAULT CURRENT_TIMESTAMP
@@ -65,6 +66,7 @@ def init_db():
         cursor.execute("""
         CREATE TABLE IF NOT EXISTS login_logs (
             id INT AUTO_INCREMENT PRIMARY KEY,
+            username VARCHAR(255),
             email VARCHAR(255),
             login_time DATETIME
         )
@@ -128,8 +130,8 @@ LOGIN_PAGE = """
             <div id="login-message"></div>
             <form method="POST" action="/login">
                 <div class="form-group">
-                    <label for="login-email">Email:</label>
-                    <input type="email" id="login-email" name="email" required>
+                    <label for="login-username">Username:</label>
+                    <input type="text" id="login-username" name="username" required>
                 </div>
                 <div class="form-group">
                     <label for="login-password">Password:</label>
@@ -142,6 +144,10 @@ LOGIN_PAGE = """
         <div id="register" class="tab-content">
             <div id="register-message"></div>
             <form method="POST" action="/register">
+                <div class="form-group">
+                    <label for="register-username">Username:</label>
+                    <input type="text" id="register-username" name="username" required>
+                </div>
                 <div class="form-group">
                     <label for="register-email">Email:</label>
                     <input type="email" id="register-email" name="email" required>
@@ -229,11 +235,12 @@ def health():
 
 @app.route("/register", methods=["POST"])
 def register():
+    username = request.form.get("username")
     email = request.form.get("email")
     password = request.form.get("password")
     confirm_password = request.form.get("confirm_password")
     
-    if not email or not password or not confirm_password:
+    if not username or not email or not password or not confirm_password:
         return redirect("/?register_error=" + quote("All fields are required"))
     
     if password != confirm_password:
@@ -245,8 +252,8 @@ def register():
         cursor = db.cursor()
         
         cursor.execute(
-            "INSERT INTO users (email, password) VALUES (%s, %s)",
-            (email, password)
+            "INSERT INTO users (username, email, password) VALUES (%s, %s, %s)",
+            (username, email, password)
         )
         db.commit()
         db.close()
@@ -256,6 +263,7 @@ def register():
         if supabase:
             try:
                 data = {
+                    "username": username,
                     "email": email,
                     "password": password,
                     "created_at": datetime.now().isoformat()
@@ -273,7 +281,7 @@ def register():
             except:
                 pass
         if err.errno == 1062:  # Duplicate entry
-            return redirect("/?register_error=Email already exists. Please login.")
+            return redirect("/?register_error=Username or Email already exists. Please login.")
         return redirect("/?register_error=" + quote(f"Database error: {str(err)}"))
     except Exception as err:
         if db:
@@ -289,29 +297,31 @@ def register():
 
 @app.route("/login", methods=["POST"])
 def login():
-    email = request.form.get("email")
+    username = request.form.get("username")
     password = request.form.get("password")
     
-    if not email or not password:
-        return "Email and password required", 400
+    if not username or not password:
+        return "Username and password required", 400
     
     db = None
     try:
         db = get_db()
         cursor = db.cursor()
         
-        cursor.execute("SELECT id FROM users WHERE email = %s AND password = %s", (email, password))
+        cursor.execute("SELECT id, email FROM users WHERE username = %s AND password = %s", (username, password))
         user = cursor.fetchone()
         
         if not user:
             db.close()
             db = None
-            return redirect("/?login_error=" + quote("Invalid email or password"))
+            return redirect("/?login_error=" + quote("Invalid username or password"))
+        
+        user_id, user_email = user
         
         # Log the login
         cursor.execute(
-            "INSERT INTO login_logs (email, login_time) VALUES (%s, %s)",
-            (email, datetime.now())
+            "INSERT INTO login_logs (username, email, login_time) VALUES (%s, %s, %s)",
+            (username, user_email, datetime.now())
         )
         
         db.commit()
@@ -322,7 +332,8 @@ def login():
         if supabase:
             try:
                 log_data = {
-                    "email": email,
+                    "username": username,
+                    "email": user_email,
                     "login_time": datetime.now().isoformat()
                 }
                 supabase.table("login_logs").insert(log_data).execute()
