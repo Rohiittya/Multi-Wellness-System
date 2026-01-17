@@ -38,11 +38,13 @@ except ImportError:
     supabase = None
 
 def get_db():
+    """Get database connection using environment variables or fallback to localhost"""
     return mysql.connector.connect(
-        host="localhost",
-        user="root",
-        password="root",
-        database="rohitproject"
+        host=os.getenv("DB_HOST", "localhost"),
+        user=os.getenv("DB_USER", "root"),
+        password=os.getenv("DB_PASSWORD", "root"),
+        database=os.getenv("DB_NAME", "rohitproject"),
+        port=int(os.getenv("DB_PORT", "3306"))
     )
 
 def init_db():
@@ -70,12 +72,19 @@ def init_db():
         
         db.commit()
         db.close()
+        print("✓ Database initialized successfully")
     except Exception as e:
-        print(f"Database initialization error: {e}")
+        print(f"⚠ Database initialization error: {e}")
+        print(f"  Make sure your database is running and credentials are correct")
+        print(f"  DB_HOST: {os.getenv('DB_HOST', 'localhost')}")
+        print(f"  DB_NAME: {os.getenv('DB_NAME', 'rohitproject')}")
 
 
 # Initialize database on startup
-init_db()
+try:
+    init_db()
+except Exception as e:
+    print(f"Failed to initialize database on startup: {e}")
 
 LOGIN_PAGE = """
 <!DOCTYPE html>
@@ -245,10 +254,13 @@ def register():
             db.close()
             if err.errno == 1062:  # Duplicate entry
                 return redirect("/?register_error=Email already exists. Please login.")
-            return redirect("/?register_error=" + quote(f"Registration error: {str(err)}"))
+            return redirect("/?register_error=" + quote(f"Database error: {str(err)}"))
     except Exception as err:
         print(f"Registration error: {str(err)}")
-        return redirect("/?register_error=" + quote(f"Registration error: {str(err)}"))
+        error_msg = f"Database connection error. Please try again later."
+        if "Can't connect" in str(err):
+            error_msg = "Database server is not accessible. Contact support."
+        return redirect("/?register_error=" + quote(error_msg))
 
 
 
@@ -295,7 +307,13 @@ def login():
         return redirect("/home2.html")
     except mysql.connector.Error as err:
         print(f"Login error: {str(err)}")
-        return f"Login error: {str(err)}", 500
+        error_msg = "Database connection error. Please try again later."
+        if "Can't connect" in str(err):
+            error_msg = "Database server is not accessible. Contact support."
+        return redirect("/?login_error=" + quote(error_msg))
+    except Exception as err:
+        print(f"Login error: {str(err)}")
+        return redirect("/?login_error=" + quote("An error occurred. Please try again."))
 
 
 
