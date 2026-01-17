@@ -49,42 +49,57 @@ def get_db():
 
 def init_db():
     """Initialize database and tables"""
-    try:
-        db = get_db()
-        cursor = db.cursor()
-        
-        cursor.execute("""
-        CREATE TABLE IF NOT EXISTS users (
-            id INT AUTO_INCREMENT PRIMARY KEY,
-            email VARCHAR(255) UNIQUE NOT NULL,
-            password VARCHAR(255) NOT NULL,
-            created_at DATETIME DEFAULT CURRENT_TIMESTAMP
-        )
-        """)
-        
-        cursor.execute("""
-        CREATE TABLE IF NOT EXISTS login_logs (
-            id INT AUTO_INCREMENT PRIMARY KEY,
-            email VARCHAR(255),
-            login_time DATETIME
-        )
-        """)
-        
-        db.commit()
-        db.close()
-        print("✓ Database initialized successfully")
-    except Exception as e:
-        print(f"⚠ Database initialization error: {e}")
-        print(f"  Make sure your database is running and credentials are correct")
-        print(f"  DB_HOST: {os.getenv('DB_HOST', 'localhost')}")
-        print(f"  DB_NAME: {os.getenv('DB_NAME', 'rohitproject')}")
+    max_retries = 3
+    retry_count = 0
+    
+    while retry_count < max_retries:
+        try:
+            db = get_db()
+            cursor = db.cursor()
+            
+            cursor.execute("""
+            CREATE TABLE IF NOT EXISTS users (
+                id INT AUTO_INCREMENT PRIMARY KEY,
+                email VARCHAR(255) UNIQUE NOT NULL,
+                password VARCHAR(255) NOT NULL,
+                created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+            )
+            """)
+            
+            cursor.execute("""
+            CREATE TABLE IF NOT EXISTS login_logs (
+                id INT AUTO_INCREMENT PRIMARY KEY,
+                email VARCHAR(255),
+                login_time DATETIME
+            )
+            """)
+            
+            db.commit()
+            db.close()
+            print("✓ Database initialized successfully")
+            return True
+        except Exception as e:
+            retry_count += 1
+            print(f"⚠ Database initialization attempt {retry_count}/{max_retries} failed: {e}")
+            if retry_count < max_retries:
+                print(f"  Retrying in 2 seconds...")
+                import time
+                time.sleep(2)
+            else:
+                print(f"✗ Could not initialize database after {max_retries} attempts")
+                print(f"  DB_HOST: {os.getenv('DB_HOST', 'localhost')}")
+                print(f"  DB_NAME: {os.getenv('DB_NAME', 'rohitproject')}")
+                print(f"  The app will continue, but registration/login will fail until database is available")
+                return False
 
 
-# Initialize database on startup
+# Initialize database on startup (don't crash if it fails)
+db_initialized = False
 try:
-    init_db()
+    db_initialized = init_db()
 except Exception as e:
-    print(f"Failed to initialize database on startup: {e}")
+    print(f"Failed to initialize database: {e}")
+    print("The app will continue without database initialization")
 
 LOGIN_PAGE = """
 <!DOCTYPE html>
@@ -212,6 +227,19 @@ def index():
     return render_template_string(LOGIN_PAGE)
 
 
+@app.route("/health")
+def health():
+    """Health check endpoint"""
+    try:
+        db = get_db()
+        cursor = db.cursor()
+        cursor.execute("SELECT 1")
+        db.close()
+        return {"status": "healthy", "database": "connected"}, 200
+    except Exception as e:
+        return {"status": "degraded", "database": "disconnected", "error": str(e)}, 503
+
+
 @app.route("/register", methods=["POST"])
 def register():
     email = request.form.get("email")
@@ -224,42 +252,66 @@ def register():
     if password != confirm_password:
         return redirect("/?register_error=" + quote("Passwords do not match"))
     
+    db = None
     try:
-        # Use MySQL as primary (Supabase only if configured)
-        db = get_db()
-        cursor = db.cursor()
+        # Try to connect with retries
+        for attempt in range(3):
+            try:
+                db = get_db()
+                cursor = db.cursor()
+                break
+            except Exception as e:
+                if attempt < 2:
+                    import time
+                    time.sleep(1)
+                    continue
+                else:
+                    raise
         
-        try:
-            cursor.execute(
-                "INSERT INTO users (email, password) VALUES (%s, %s)",
-                (email, password)
-            )
-            db.commit()
-            db.close()
-            
-            # Also save to Supabase if configured
-            if supabase:
-                try:
-                    data = {
-                        "email": email,
-                        "password": password,
-                        "created_at": datetime.now().isoformat()
-                    }
-                    supabase.table("registration").insert(data).execute()
-                except Exception as e:
-                    print(f"Supabase sync failed: {str(e)}")
-            
-            return redirect("/success?msg=registered")
-        except mysql.connector.Error as err:
-            db.close()
-            if err.errno == 1062:  # Duplicate entry
-                return redirect("/?register_error=Email already exists. Please login.")
-            return redirect("/?register_error=" + quote(f"Database error: {str(err)}"))
+        if not db:
+            return redirect("/?register_error=" + quote("Database connection failed"))
+        
+        cursor.execute(
+            "INSERT INTO users (email, password) VALUES (%s, %s)",
+            (email, password)
+        )
+        db.commit()
+        db.close()
+        db = None
+        
+        # Also save to Supabase if configured
+        if supabase:
+            try:
+                data = {
+                    "email": email,
+                    "password": password,
+                    "created_at": datetime.now().isoformat()
+                }
+                supabase.table("registration").insert(data).execute()
+            except Exception as e:
+                print(f"Supabase sync failed: {str(e)}")
+        
+        return redirect("/success?msg=registered")
+        
+    except mysql.connector.Error as err:
+        if db:
+            try:
+                db.close()
+            except:
+                pass
+        if err.errno == 1062:  # Duplicate entry
+            return redirect("/?register_error=Email already exists. Please login.")
+        return redirect("/?register_error=" + quote(f"Database error: {str(err)}"))
     except Exception as err:
+        if db:
+            try:
+                db.close()
+            except:
+                pass
         print(f"Registration error: {str(err)}")
-        error_msg = f"Database connection error. Please try again later."
-        if "Can't connect" in str(err):
-            error_msg = "Database server is not accessible. Contact support."
+        error_msg = "Database connection error. Please try again later."
+        if "Can't connect" in str(err) or "111" in str(err):
+            error_msg = "Database server is unavailable. Please try again in a moment."
         return redirect("/?register_error=" + quote(error_msg))
 
 
@@ -272,16 +324,31 @@ def login():
     if not email or not password:
         return "Email and password required", 400
     
+    db = None
     try:
-        # Use MySQL as primary (Supabase only as fallback)
-        db = get_db()
-        cursor = db.cursor()
+        # Try to connect with retries
+        for attempt in range(3):
+            try:
+                db = get_db()
+                cursor = db.cursor()
+                break
+            except Exception as e:
+                if attempt < 2:
+                    import time
+                    time.sleep(1)
+                    continue
+                else:
+                    raise
+        
+        if not db:
+            return redirect("/?login_error=" + quote("Database connection failed"))
         
         cursor.execute("SELECT id FROM users WHERE email = %s AND password = %s", (email, password))
         user = cursor.fetchone()
         
         if not user:
             db.close()
+            db = None
             return redirect("/?login_error=" + quote("Invalid email or password"))
         
         # Log the login
@@ -292,6 +359,7 @@ def login():
         
         db.commit()
         db.close()
+        db = None
         
         # Also log to Supabase if configured
         if supabase:
@@ -305,13 +373,24 @@ def login():
                 print(f"Supabase login log failed: {str(e)}")
         
         return redirect("/home2.html")
+        
     except mysql.connector.Error as err:
+        if db:
+            try:
+                db.close()
+            except:
+                pass
         print(f"Login error: {str(err)}")
         error_msg = "Database connection error. Please try again later."
-        if "Can't connect" in str(err):
-            error_msg = "Database server is not accessible. Contact support."
+        if "Can't connect" in str(err) or "111" in str(err):
+            error_msg = "Database server is unavailable. Please try again in a moment."
         return redirect("/?login_error=" + quote(error_msg))
     except Exception as err:
+        if db:
+            try:
+                db.close()
+            except:
+                pass
         print(f"Login error: {str(err)}")
         return redirect("/?login_error=" + quote("An error occurred. Please try again."))
 
