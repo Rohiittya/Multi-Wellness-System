@@ -4,10 +4,24 @@ from datetime import datetime
 import os
 from pathlib import Path
 from urllib.parse import quote
+from supabase import create_client, Client
+from dotenv import load_dotenv
+
+load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent
 
 app = Flask(__name__)
+
+# Supabase configuration
+SUPABASE_URL = os.getenv("SUPABASE_URL", "")
+SUPABASE_KEY = os.getenv("SUPABASE_KEY", "")
+
+if SUPABASE_URL and SUPABASE_KEY:
+    supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
+else:
+    supabase = None
+    print("Warning: Supabase credentials not configured. Please set SUPABASE_URL and SUPABASE_KEY in .env file")
 
 def get_db():
     return mysql.connector.connect(
@@ -188,18 +202,38 @@ def register():
         return redirect("/?register_error=" + quote("Passwords do not match"))
     
     try:
-        db = get_db()
-        cursor = db.cursor()
-        
-        cursor.execute(
-            "INSERT INTO users (email, password) VALUES (%s, %s)",
-            (email, password)
-        )
-        
-        db.commit()
-        db.close()
-        
-        return redirect("/success?msg=registered")
+        if supabase:
+            # Use Supabase for registration
+            try:
+                # Check if email already exists
+                response = supabase.table("registration").select("*").eq("email", email).execute()
+                if response.data:
+                    return redirect("/?register_error=Email already exists. Please login.")
+                
+                # Insert new registration
+                data = {
+                    "email": email,
+                    "password": password,
+                    "created_at": datetime.now().isoformat()
+                }
+                supabase.table("registration").insert(data).execute()
+                return redirect("/success?msg=registered")
+            except Exception as err:
+                return redirect("/?register_error=" + quote(f"Registration error: {str(err)}"))
+        else:
+            # Fallback to MySQL if Supabase not configured
+            db = get_db()
+            cursor = db.cursor()
+            
+            cursor.execute(
+                "INSERT INTO users (email, password) VALUES (%s, %s)",
+                (email, password)
+            )
+            
+            db.commit()
+            db.close()
+            
+            return redirect("/success?msg=registered")
     except mysql.connector.Error as err:
         if err.errno == 1062:  # Duplicate entry
             return redirect("/?register_error=Email already exists. Please login.")
@@ -215,26 +249,47 @@ def login():
         return "Email and password required", 400
     
     try:
-        db = get_db()
-        cursor = db.cursor()
-        
-        cursor.execute("SELECT id FROM users WHERE email = %s AND password = %s", (email, password))
-        user = cursor.fetchone()
-        
-        if not user:
+        if supabase:
+            # Use Supabase for login verification
+            try:
+                response = supabase.table("registration").select("*").eq("email", email).eq("password", password).execute()
+                user = response.data
+                
+                if not user:
+                    return redirect("/?login_error=" + quote("Invalid email or password"))
+                
+                # Log the login
+                log_data = {
+                    "email": email,
+                    "login_time": datetime.now().isoformat()
+                }
+                supabase.table("login_logs").insert(log_data).execute()
+                
+                return redirect("/home2.html")
+            except Exception as err:
+                return f"Login error: {str(err)}", 500
+        else:
+            # Fallback to MySQL if Supabase not configured
+            db = get_db()
+            cursor = db.cursor()
+            
+            cursor.execute("SELECT id FROM users WHERE email = %s AND password = %s", (email, password))
+            user = cursor.fetchone()
+            
+            if not user:
+                db.close()
+                return redirect("/?login_error=" + quote("Invalid email or password"))
+            
+            # Log the login
+            cursor.execute(
+                "INSERT INTO login_logs (email, login_time) VALUES (%s, %s)",
+                (email, datetime.now())
+            )
+            
+            db.commit()
             db.close()
-            return redirect("/?login_error=" + quote("Invalid email or password"))
-        
-        # Log the login
-        cursor.execute(
-            "INSERT INTO login_logs (email, login_time) VALUES (%s, %s)",
-            (email, datetime.now())
-        )
-        
-        db.commit()
-        db.close()
-        
-        return redirect("/home2.html")
+            
+            return redirect("/home2.html")
     except mysql.connector.Error as err:
         return f"Login error: {err}", 500
 
