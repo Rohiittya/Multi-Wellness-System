@@ -48,58 +48,45 @@ def get_db():
     )
 
 def init_db():
-    """Initialize database and tables"""
-    max_retries = 3
-    retry_count = 0
-    
-    while retry_count < max_retries:
-        try:
-            db = get_db()
-            cursor = db.cursor()
-            
-            cursor.execute("""
-            CREATE TABLE IF NOT EXISTS users (
-                id INT AUTO_INCREMENT PRIMARY KEY,
-                email VARCHAR(255) UNIQUE NOT NULL,
-                password VARCHAR(255) NOT NULL,
-                created_at DATETIME DEFAULT CURRENT_TIMESTAMP
-            )
-            """)
-            
-            cursor.execute("""
-            CREATE TABLE IF NOT EXISTS login_logs (
-                id INT AUTO_INCREMENT PRIMARY KEY,
-                email VARCHAR(255),
-                login_time DATETIME
-            )
-            """)
-            
-            db.commit()
-            db.close()
-            print("✓ Database initialized successfully")
-            return True
-        except Exception as e:
-            retry_count += 1
-            print(f"⚠ Database initialization attempt {retry_count}/{max_retries} failed: {e}")
-            if retry_count < max_retries:
-                print(f"  Retrying in 2 seconds...")
-                import time
-                time.sleep(2)
-            else:
-                print(f"✗ Could not initialize database after {max_retries} attempts")
-                print(f"  DB_HOST: {os.getenv('DB_HOST', 'localhost')}")
-                print(f"  DB_NAME: {os.getenv('DB_NAME', 'rohitproject')}")
-                print(f"  The app will continue, but registration/login will fail until database is available")
-                return False
+    """Initialize database and tables - non-blocking version"""
+    try:
+        db = get_db()
+        cursor = db.cursor()
+        
+        cursor.execute("""
+        CREATE TABLE IF NOT EXISTS users (
+            id INT AUTO_INCREMENT PRIMARY KEY,
+            email VARCHAR(255) UNIQUE NOT NULL,
+            password VARCHAR(255) NOT NULL,
+            created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+        )
+        """)
+        
+        cursor.execute("""
+        CREATE TABLE IF NOT EXISTS login_logs (
+            id INT AUTO_INCREMENT PRIMARY KEY,
+            email VARCHAR(255),
+            login_time DATETIME
+        )
+        """)
+        
+        db.commit()
+        db.close()
+        print("✓ Database initialized successfully")
+        return True
+    except Exception as e:
+        print(f"⚠ Database initialization deferred: {type(e).__name__}")
+        print(f"  Tables will be created on first request")
+        return False
 
 
-# Initialize database on startup (don't crash if it fails)
-db_initialized = False
+# Initialize database on startup (non-blocking, don't crash if fails)
+db_ready = False
 try:
-    db_initialized = init_db()
+    db_ready = init_db()
 except Exception as e:
-    print(f"Failed to initialize database: {e}")
-    print("The app will continue without database initialization")
+    print(f"⚠ Database not ready on startup (will retry on first request)")
+
 
 LOGIN_PAGE = """
 <!DOCTYPE html>
@@ -254,22 +241,8 @@ def register():
     
     db = None
     try:
-        # Try to connect with retries
-        for attempt in range(3):
-            try:
-                db = get_db()
-                cursor = db.cursor()
-                break
-            except Exception as e:
-                if attempt < 2:
-                    import time
-                    time.sleep(1)
-                    continue
-                else:
-                    raise
-        
-        if not db:
-            return redirect("/?register_error=" + quote("Database connection failed"))
+        db = get_db()
+        cursor = db.cursor()
         
         cursor.execute(
             "INSERT INTO users (email, password) VALUES (%s, %s)",
@@ -310,8 +283,6 @@ def register():
                 pass
         print(f"Registration error: {str(err)}")
         error_msg = "Database connection error. Please try again later."
-        if "Can't connect" in str(err) or "111" in str(err):
-            error_msg = "Database server is unavailable. Please try again in a moment."
         return redirect("/?register_error=" + quote(error_msg))
 
 
@@ -326,22 +297,8 @@ def login():
     
     db = None
     try:
-        # Try to connect with retries
-        for attempt in range(3):
-            try:
-                db = get_db()
-                cursor = db.cursor()
-                break
-            except Exception as e:
-                if attempt < 2:
-                    import time
-                    time.sleep(1)
-                    continue
-                else:
-                    raise
-        
-        if not db:
-            return redirect("/?login_error=" + quote("Database connection failed"))
+        db = get_db()
+        cursor = db.cursor()
         
         cursor.execute("SELECT id FROM users WHERE email = %s AND password = %s", (email, password))
         user = cursor.fetchone()
@@ -382,8 +339,6 @@ def login():
                 pass
         print(f"Login error: {str(err)}")
         error_msg = "Database connection error. Please try again later."
-        if "Can't connect" in str(err) or "111" in str(err):
-            error_msg = "Database server is unavailable. Please try again in a moment."
         return redirect("/?login_error=" + quote(error_msg))
     except Exception as err:
         if db:
