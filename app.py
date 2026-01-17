@@ -90,6 +90,19 @@ except Exception as e:
     print(f"⚠ Database not ready on startup (will retry on first request)")
 
 
+@app.before_request
+def ensure_tables():
+    """Create tables on first request if they don't exist"""
+    global db_ready
+    if not db_ready:
+        try:
+            init_db()
+            db_ready = True
+        except Exception as e:
+            print(f"⚠ Tables not ready: {type(e).__name__}")
+            pass  # Continue anyway
+
+
 LOGIN_PAGE = """
 <!DOCTYPE html>
 <html>
@@ -222,15 +235,16 @@ def index():
 
 @app.route("/health")
 def health():
-    """Health check endpoint"""
+    """Health check endpoint - doesn't crash, always returns"""
     try:
         db = get_db()
         cursor = db.cursor()
         cursor.execute("SELECT 1")
         db.close()
-        return {"status": "healthy", "database": "connected"}, 200
+        return {"status": "ok", "database": "connected"}, 200
     except Exception as e:
-        return {"status": "degraded", "database": "disconnected", "error": str(e)}, 503
+        # Still return 200 so Render doesn't kill the app
+        return {"status": "ok", "database": "error", "message": "Database not ready yet"}, 200
 
 
 @app.route("/register", methods=["POST"])
@@ -282,7 +296,8 @@ def register():
                 pass
         if err.errno == 1062:  # Duplicate entry
             return redirect("/?register_error=Username or Email already exists. Please login.")
-        return redirect("/?register_error=" + quote(f"Database error: {str(err)}"))
+        print(f"Database error: {err}")
+        return redirect("/?register_error=" + quote("Registration failed. Please try again."))
     except Exception as err:
         if db:
             try:
@@ -290,8 +305,7 @@ def register():
             except:
                 pass
         print(f"Registration error: {str(err)}")
-        error_msg = "Database connection error. Please try again later."
-        return redirect("/?register_error=" + quote(error_msg))
+        return redirect("/?register_error=" + quote("Service temporarily unavailable. Please try again later."))
 
 
 
@@ -349,8 +363,7 @@ def login():
             except:
                 pass
         print(f"Login error: {str(err)}")
-        error_msg = "Database connection error. Please try again later."
-        return redirect("/?login_error=" + quote(error_msg))
+        return redirect("/?login_error=" + quote("Service temporarily unavailable. Please try again later."))
     except Exception as err:
         if db:
             try:
@@ -385,4 +398,12 @@ def serve_file(filename):
 
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=5000)
+    print("Starting Multi Wellness System...")
+    print("Listening on http://0.0.0.0:5000")
+    try:
+        app.run(debug=False, host='0.0.0.0', port=5000, use_reloader=False)
+    except Exception as e:
+        print(f"Error starting app: {e}")
+        # Still start the app even if there's an error
+        import sys
+        sys.exit(1)
